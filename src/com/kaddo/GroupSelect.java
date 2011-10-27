@@ -2,50 +2,44 @@ package com.kaddo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class GroupSelect extends Activity {
-
+	ImageButton bt_back;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_select);
+        findViews();
+        setListeners();
 
-        // Reference the Gallery view
         Gallery g = (Gallery) findViewById(R.id.g_level);
-        // Set the adapter to our custom adapter (below)
         g.setAdapter(new ImageAdapter(this));
 
-        // Set a item click listener, and just Toast the clicked position
         g.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Toast.makeText(GroupSelect.this, "" + position, Toast.LENGTH_SHORT).show();
             }
         });
-
-        // We also want to show context menu for longpressed items in the gallery
-        registerForContextMenu(g);
     }
 
     public class ImageAdapter extends BaseAdapter {
-        private static final int ITEM_WIDTH = 136;
-        private static final int ITEM_HEIGHT = 88;
 
         private final int mGalleryItemBackground;
         private final Context mContext;
@@ -57,8 +51,6 @@ public class GroupSelect extends Activity {
         		R.drawable.level_3
         };
 
-        private final float mDensity;
-
         public ImageAdapter(Context c) {
             mContext = c;
             // See res/values/attrs.xml for the <declare-styleable> that defines
@@ -66,8 +58,6 @@ public class GroupSelect extends Activity {
             TypedArray a = obtainStyledAttributes(R.styleable.level_wrap);
             mGalleryItemBackground = a.getResourceId(R.styleable.level_wrap_android_galleryItemBackground, 0);
             a.recycle();
-
-            mDensity = c.getResources().getDisplayMetrics().density;
         }
 
         public int getCount() {
@@ -83,25 +73,42 @@ public class GroupSelect extends Activity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-        	ImageView imageView;
-            if (convertView == null) {
-                convertView = new ImageView(mContext);
-
-                imageView = (ImageView) convertView;
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-//                imageView.setLayoutParams(new Gallery.LayoutParams(
-//                        (int) (ITEM_WIDTH * mDensity + 0.5f),
-//                        (int) (ITEM_HEIGHT * mDensity + 0.5f)));
-
-
-                imageView.setBackgroundResource(mGalleryItemBackground);
-            } else {
-                imageView = (ImageView) convertView;
-            }
-
-            imageView.setImageResource(mImageIds[position]);
-
-            return imageView;
+        	ImageView imgView = new ImageView(mContext);
+            // do stuff initializing your imgView as before
+            RelativeLayout borderImg = new RelativeLayout(mContext);
+            borderImg.setPadding(1,1,1,1);
+            borderImg.setBackgroundColor(Color.TRANSPARENT);
+            imgView.setImageResource(mImageIds[position]);
+            borderImg.addView(imgView);
+            return borderImg;
         }
     }
+    
+    private void setListeners() {
+    	bt_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		
+    	bt_back.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					bt_back.setAlpha(200);
+					break;
+				case MotionEvent.ACTION_UP:
+					bt_back.setAlpha(255);
+					break;
+				}
+				return false;
+			}
+		});
+	}
+	
+	private void findViews() {
+		bt_back = (ImageButton)findViewById(R.id.bt_back);
+	}
 }

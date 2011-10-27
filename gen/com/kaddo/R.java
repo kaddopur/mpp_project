@@ -22,9 +22,9 @@ public final class R {
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f050000;
-        public static final int bt_back=0x7f050003;
+        public static final int bt_back=0x7f050002;
         public static final int bt_start=0x7f050006;
-        public static final int g_level=0x7f050002;
+        public static final int g_level=0x7f050003;
         public static final int imageId=0x7f050004;
         public static final int imageView1=0x7f050001;
         public static final int linearLayout1=0x7f050005;
