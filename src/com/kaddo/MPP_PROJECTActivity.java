@@ -1,37 +1,22 @@
 package com.kaddo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
 public class MPP_PROJECTActivity extends Activity {
-    private Button bt1, bt2;
-    private static final String TAG = "VoiceRecognition";
-    private static final int VOICE_RECOGNITION_REQUEST_CODE_1 = 1234;
-    private static final int VOICE_RECOGNITION_REQUEST_CODE_2 = 2345;
+    private ImageButton bt_start;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
+        setContentView(R.layout.title);
         findViews();
-        
+        setListeners();
+        /*
         PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
         if (activities.size() != 0) {
@@ -41,9 +26,9 @@ public class MPP_PROJECTActivity extends Activity {
         	bt1.setText("Recognizer not present");
         	bt2.setEnabled(false);
         	bt2.setText("Recognizer not present");
-        }
+        }*/
     }
-    
+    /*
     private void startVoiceRecognitionActivity(int index) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
@@ -100,28 +85,33 @@ public class MPP_PROJECTActivity extends Activity {
         }
     	super.onActivityResult(requestCode, resultCode, data);
     }
-	
+	*/
 	private void setListeners() {
-		OnClickListener twist = new OnClickListener() {
+		bt_start.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				switch(v.getId()){
-				case R.id.twist_1:
-					startVoiceRecognitionActivity(1);
+				Intent it = new Intent(MPP_PROJECTActivity.this, GroupSelect.class);
+				startActivity(it);
+			}
+		});
+		
+		bt_start.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					bt_start.setAlpha(200);
 					break;
-				case R.id.twist_2:
-					startVoiceRecognitionActivity(2);
+				case MotionEvent.ACTION_UP:
+					bt_start.setAlpha(255);
 					break;
 				}
+				return false;
 			}
-		};
-		
-		bt1.setOnClickListener(twist);
-		bt2.setOnClickListener(twist);
+		});
 	}
 	
 	private void findViews() {
-		bt1 = (Button)findViewById(R.id.twist_1);
-		bt2 = (Button)findViewById(R.id.twist_2);
+		bt_start = (ImageButton)findViewById(R.id.bt_start);
 	}
 }

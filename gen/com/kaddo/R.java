@@ -11,19 +11,53 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int back_1=0x7f020000;
+        public static final int back_2=0x7f020001;
+        public static final int button_1=0x7f020002;
+        public static final int button_2=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int level_1=0x7f020005;
+        public static final int level_2=0x7f020006;
+        public static final int level_3=0x7f020007;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f050000;
-        public static final int linearLayout2=0x7f050001;
-        public static final int twist_1=0x7f050002;
-        public static final int twist_2=0x7f050003;
+        public static final int AbsoluteLayout1=0x7f050000;
+        public static final int bt_back=0x7f050003;
+        public static final int bt_start=0x7f050006;
+        public static final int g_level=0x7f050002;
+        public static final int imageId=0x7f050004;
+        public static final int imageView1=0x7f050001;
+        public static final int linearLayout1=0x7f050005;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int group_select=0x7f030000;
+        public static final int page=0x7f030001;
+        public static final int title=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
+        public static final int gallery_2_text=0x7f040002;
         public static final int hello=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a level_wrap.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #level_wrap_android_galleryItemBackground com.kaddo:android_galleryItemBackground}</code></td><td></td></tr>
+           </table>
+           @see #level_wrap_android_galleryItemBackground
+         */
+        public static final int[] level_wrap = {
+            0x0101004c
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.kaddo.R.attr#android_galleryItemBackground}
+          attribute's value can be found in the {@link #level_wrap} array.
+          @attr name android:android_galleryItemBackground
+        */
+        public static final int level_wrap_android_galleryItemBackground = 0;
+    };
 }
