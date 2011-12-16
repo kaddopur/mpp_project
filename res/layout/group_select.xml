@@ -31,4 +31,13 @@
         android:spacing="60dp"
         android:unselectedAlpha="0.7" />
 
+    <ImageButton
+        android:id="@+id/bt_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="467dp"
+        android:layout_y="258dp"
+        android:background="@null"
+        android:src="@drawable/ic_launcher" />
+
 </AbsoluteLayout>

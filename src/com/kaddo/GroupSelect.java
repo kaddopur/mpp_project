@@ -20,7 +20,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class GroupSelect extends Activity {
-	ImageButton bt_back;
+	ImageButton bt_back,bt_alarm;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,9 @@ public class GroupSelect extends Activity {
         g.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Toast.makeText(GroupSelect.this, "" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(GroupSelect.this, GameStage.class);                   
+                startActivity(intent);
             }
         });
     }
@@ -106,9 +109,34 @@ public class GroupSelect extends Activity {
 				return false;
 			}
 		});
+    	
+    	bt_alarm.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+                intent.setClass(GroupSelect.this, AlarmActivity.class);                   
+                startActivity(intent);
+			}
+		});
+		
+    	bt_alarm.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					bt_alarm.setAlpha(200);
+					break;
+				case MotionEvent.ACTION_UP:
+					bt_alarm.setAlpha(255);
+					break;
+				}
+				return false;
+			}
+		});
 	}
 	
 	private void findViews() {
 		bt_back = (ImageButton)findViewById(R.id.bt_back);
+		bt_alarm = (ImageButton)findViewById(R.id.bt_alarm);
 	}
 }

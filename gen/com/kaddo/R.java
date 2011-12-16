@@ -22,17 +22,55 @@ public final class R {
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f050000;
+        public static final int RelativeLayout01=0x7f05001c;
+        public static final int bt_alarm=0x7f050006;
         public static final int bt_back=0x7f050002;
-        public static final int bt_start=0x7f050006;
-        public static final int g_level=0x7f050003;
-        public static final int imageId=0x7f050004;
+        public static final int bt_start=0x7f050028;
+        public static final int checkBox1=0x7f05001e;
+        public static final int clockTime=0x7f05001d;
+        public static final int g_level=0x7f050005;
+        public static final int imageButton1=0x7f05000b;
+        public static final int imageButton10=0x7f050015;
+        public static final int imageButton11=0x7f050017;
+        public static final int imageButton12=0x7f050018;
+        public static final int imageButton13=0x7f050019;
+        public static final int imageButton14=0x7f05001a;
+        public static final int imageButton15=0x7f05001b;
+        public static final int imageButton2=0x7f05000c;
+        public static final int imageButton3=0x7f05000d;
+        public static final int imageButton4=0x7f05000e;
+        public static final int imageButton5=0x7f05000f;
+        public static final int imageButton6=0x7f050011;
+        public static final int imageButton7=0x7f050012;
+        public static final int imageButton8=0x7f050013;
+        public static final int imageButton9=0x7f050014;
+        public static final int imageId=0x7f050007;
         public static final int imageView1=0x7f050001;
-        public static final int linearLayout1=0x7f050005;
+        public static final int imageView2=0x7f050004;
+        public static final int linearLayout1=0x7f050009;
+        public static final int linearLayout2=0x7f05000a;
+        public static final int linearLayout3=0x7f050010;
+        public static final int linearLayout4=0x7f050016;
+        public static final int listView1=0x7f050003;
+        public static final int relativeLayout1=0x7f05001f;
+        public static final int textView1=0x7f050020;
+        public static final int textView3=0x7f050022;
+        public static final int textView4=0x7f050023;
+        public static final int textView5=0x7f050024;
+        public static final int textView6=0x7f050021;
+        public static final int textView7=0x7f050026;
+        public static final int textView8=0x7f050025;
+        public static final int textView9=0x7f050027;
+        public static final int timePicker1=0x7f050008;
     }
     public static final class layout {
-        public static final int group_select=0x7f030000;
-        public static final int page=0x7f030001;
-        public static final int title=0x7f030002;
+        public static final int alarm_main=0x7f030000;
+        public static final int group_select=0x7f030001;
+        public static final int page=0x7f030002;
+        public static final int set_clock=0x7f030003;
+        public static final int stage_select=0x7f030004;
+        public static final int time_list=0x7f030005;
+        public static final int title=0x7f030006;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

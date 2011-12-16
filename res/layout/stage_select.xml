@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:src="@drawable/back_2" />
+
+    <ImageButton
+        android:id="@+id/bt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="17dp"
+        android:layout_y="258dp"
+        android:background="@null"
+        android:src="@drawable/button_2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="332dp"
+        android:layout_height="206dp"
+        android:layout_x="98dp"
+        android:layout_y="36dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/imageButton15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="1"
+                android:src="@drawable/ic_launcher" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</AbsoluteLayout>
