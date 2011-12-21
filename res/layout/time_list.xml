@@ -8,9 +8,17 @@
     android:paddingLeft="12dip"  
     android:paddingRight="12dip">
 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_centerVertical="true" android:layout_alignParentLeft="true" android:text="12:00上午" android:id="@+id/clockTime"></TextView>
-<CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/checkBox1" android:layout_alignTop="@+id/imageView1" android:layout_alignParentRight="true"></CheckBox>
 <ImageView android:layout_width="wrap_content" android:id="@+id/imageView1" android:src="@drawable/ic_launcher" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_toRightOf="@+id/clockTime"></ImageView>
-<RelativeLayout android:id="@+id/relativeLayout1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/checkBox1" android:layout_toRightOf="@+id/imageView1" android:layout_alignBottom="@+id/checkBox1" android:layout_alignTop="@+id/imageView1">
+
+<RelativeLayout
+    android:id="@+id/relativeLayout2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/imageView1"
+    android:layout_alignTop="@+id/imageView1"
+    android:layout_toLeftOf="@+id/checkBox1"
+    android:layout_toRightOf="@+id/imageView1" >
+
     <TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:text="週 期"></TextView>
     <TextView android:id="@+id/textView6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_below="@+id/textView1" android:layout_centerHorizontal="true" android:text="  三  "></TextView>
     <TextView android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_alignTop="@+id/textView6" android:layout_toLeftOf="@+id/textView6" android:text="  二"></TextView>
@@ -19,5 +27,13 @@
     <TextView android:id="@+id/textView8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_alignTop="@+id/textView7" android:layout_toRightOf="@+id/textView7" android:text="五  "></TextView>
     <TextView android:id="@+id/textView9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_alignTop="@+id/textView8" android:layout_toRightOf="@+id/textView8" android:text="六"></TextView>
     <TextView android:id="@+id/textView7" android:text="四  " android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_alignTop="@+id/textView6" android:layout_toRightOf="@+id/textView6"></TextView>
-</RelativeLayout>  
+</RelativeLayout>
+
+<CheckBox
+    android:id="@+id/checkBox1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_alignTop="@+id/imageView1" android:focusable="false"/>
+  
 </RelativeLayout> 

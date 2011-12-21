@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class AlarmActivity extends Activity {
     /** Called when the activity is first created. */
@@ -42,7 +46,7 @@ public class AlarmActivity extends Activity {
 		listItem.add(mpp3);
 		
      	// 生成适配器的Item和动态数组对应的元素
-    	listItemAdapter = new SimpleAdapter(this, listItem,// 数据源
+    	listItemAdapter = new SimpleAdapter(AlarmActivity.this, listItem,// 数据源
     	R.layout.time_list,// ListItem的XML实现
     	// 动态数组与ImageItem对应的子项
     	new String[] {  "clockTime","level" },
@@ -50,6 +54,26 @@ public class AlarmActivity extends Activity {
     	new int[] { R.id.clockTime,R.id.imageView1});
     	//添加并且显示
     	list.setAdapter(listItemAdapter);
+    
+    	// 添加点击
+    			list.setOnItemClickListener(new OnItemClickListener() {
+
+    				@Override
+    				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+    						long arg3) {
+    					//select = arg2;
+    					HashMap<String, Object> map2 = (HashMap<String, Object>) list
+    							.getItemAtPosition(arg2);
+    					Toast.makeText(AlarmActivity.this, "選取了" + map2.get("clockTime"), Toast.LENGTH_SHORT).show();
+    					Intent intent = new Intent();
+    	                intent.setClass(AlarmActivity.this, AlarmSetMenu.class);                   
+    	                startActivity(intent);
+    			
+    				}
+    			});
+    			
+    
+    
     }
     private void setListeners() {
     	bt_back.setOnClickListener(new View.OnClickListener() {
@@ -77,5 +101,6 @@ public class AlarmActivity extends Activity {
 	
 	private void findViews() {
 		bt_back = (ImageButton)findViewById(R.id.bt_back);
+		
 	}
 }
