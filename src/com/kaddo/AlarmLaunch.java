@@ -3,8 +3,10 @@ package com.kaddo;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.Service;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -12,6 +14,7 @@ public class AlarmLaunch extends Activity {
 	int Level,Volumn;
 	boolean Vibrate;
 	MediaPlayer mp;
+	Vibrator myVibrator;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +37,16 @@ public class AlarmLaunch extends Activity {
         	mp.start();  
 		
         
-        
+      if(Vibrate){
+    	//取得震動服務
+    	 myVibrator = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
+    	 myVibrator.vibrate(new long[]{1000, 1000}, 0);
+      }
 	}
 	@Override
 	public void onPause(){
 		super.onPause();
 		mp.release();
-	}
-}
+			myVibrator.cancel();
+}}
+
