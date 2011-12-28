@@ -91,11 +91,11 @@ import android.widget.Toast;
 //        }
         
       //設定內容圖案與
-        viewTag.levelImg.setBackgroundResource((Integer) AlarmActivity.listItem.get(position).get("levelImg"));
+        viewTag.levelImg.setImageResource((Integer) AlarmActivity.listItem.get(position).get("levelImg"));
 //        
 //        
 //        //設定內容時間
-        viewTag.clockTime.setText((String)AlarmActivity.listItem.get(position).get("clockTime"));
+        viewTag.clockTime.setText((String)AlarmActivity.listItem.get(position).get("clockTime")+"  ");
         //設定內容日期
         viewTag.day0.setTextColor(Color.GRAY);
         viewTag.day1.setTextColor(Color.GRAY);

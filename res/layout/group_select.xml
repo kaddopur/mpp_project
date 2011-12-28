@@ -38,6 +38,6 @@
         android:layout_x="467dp"
         android:layout_y="258dp"
         android:background="@null"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/button_3" />
 
 </AbsoluteLayout>

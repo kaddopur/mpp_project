@@ -50,7 +50,7 @@ public class AlarmActivity extends Activity {
 		mpp.put("day4", "false");
 		mpp.put("day5", "true");
 		mpp.put("day6", "false");
-		mpp.put("levelImg", R.drawable.ic_launcher);
+		mpp.put("levelImg", R.drawable.tag_1);
 		listItem.add(mpp);
 		HashMap<String, Object> mpp2 = new HashMap<String, Object>();
 		mpp2.put("clockTime", "09:10上午");
@@ -66,7 +66,7 @@ public class AlarmActivity extends Activity {
 		mpp2.put("day4", "false");
 		mpp2.put("day5", "true");
 		mpp2.put("day6", "false");
-		mpp2.put("levelImg", R.drawable.ic_launcher);
+		mpp2.put("levelImg", R.drawable.tag_2);
 		listItem.add(mpp2);
 		HashMap<String, Object> mpp3 = new HashMap<String, Object>();
 		mpp3.put("clockTime", "09:20上午");
@@ -82,7 +82,7 @@ public class AlarmActivity extends Activity {
 		mpp3.put("day4", "true");
 		mpp3.put("day5", "true");
 		mpp3.put("day6", "false");
-		mpp3.put("levelImg", R.drawable.ic_launcher);
+		mpp3.put("levelImg", R.drawable.tag_3);
 		listItem.add(mpp3);
 		
      	// 生成适配器的Item和动态数组对应的元素
