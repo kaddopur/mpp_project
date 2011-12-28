@@ -27,7 +27,7 @@ public class AlarmLaunch extends Activity {
         Level=bundle.getInt("level");
         Volumn=bundle.getInt("volumn");
         Vibrate=bundle.getBoolean("vibrate");
-        Toast.makeText(this, "¾xÄÁ®É¶¡¨ì¤F¡AÃö¥dµ¥¯Å¡G"+Level+" ¾x¹a­µ¶q¡G"+Volumn+" ¾_°Ê¡G"+Vibrate, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "é¬§é˜æ™‚é–“åˆ°äº†ï¼Œé—œå¡ç­‰ç´šï¼š"+Level+" é¬§éˆ´éŸ³é‡ï¼š"+Volumn+" éœ‡å‹•ï¼š"+Vibrate, Toast.LENGTH_LONG).show();
 		
         mp = MediaPlayer.create(this, R.raw.ring);  
        
@@ -38,7 +38,7 @@ public class AlarmLaunch extends Activity {
 		
         
       if(Vibrate){
-    	//¨ú±o¾_°ÊªA°È
+    	//å–å¾—éœ‡å‹•æœå‹™
     	 myVibrator = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
     	 myVibrator.vibrate(new long[]{1000, 1000}, 0);
       }
@@ -48,5 +48,24 @@ public class AlarmLaunch extends Activity {
 		super.onPause();
 		mp.release();
 			myVibrator.cancel();
-}}
+}
+	
+//	@Override
+//	public void onBackPressed() {
+//	// è¿™é‡Œå¤„ç†é€»è¾‘ä»£ç ï¼Œå¤§å®¶æ³¨æ„ï¼šè¯¥æ–¹æ³•ä»…é€‚ç”¨äº2.0æˆ–æ›´æ–°ç‰ˆçš„sdk
+//	return;
+//	}
+	@Override
+
+	 public void onAttachedToWindow()
+
+	 { // TODO Auto-generated method stub
+
+	    this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+
+	    super.onAttachedToWindow();
+
+	 }
+	
+}
 

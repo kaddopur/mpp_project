@@ -110,7 +110,7 @@ public class AlarmSetMenu extends Activity{
     		minute="0"+setMinute;
     	
     	
-    	if(setHour>=20)
+    	if(setHour>=22)
 			clockTime=(setHour-12)+":"+minute+"下午";
 		else if(setHour>12)
 			clockTime="0"+(setHour-12)+":"+minute+"下午";

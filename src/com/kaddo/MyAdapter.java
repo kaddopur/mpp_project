@@ -31,7 +31,7 @@ import android.widget.Toast;
 			this.context=context;
 		}
 //
-	    boolean[] launch = new boolean[]{false,false,false}; 
+//	    boolean[] launch = new boolean[]{false,false,false}; 
 		private LayoutInflater myInflater;
 		public Context context;
 //	    CharSequence[] list = null;
@@ -91,7 +91,21 @@ import android.widget.Toast;
 //        }
         
       //設定內容圖案與
-        viewTag.levelImg.setImageResource((Integer) AlarmActivity.listItem.get(position).get("levelImg"));
+            switch(Integer.parseInt((String)(AlarmActivity.listItem.get(position).get("level"))))
+    		{
+    		case 0:
+    			 viewTag.levelImg.setImageResource(R.drawable.tag_1);
+    			 break;
+    		case 1:
+    			 viewTag.levelImg.setImageResource(R.drawable.tag_2);  
+    			 break;
+    		case 2:
+    			 viewTag.levelImg.setImageResource(R.drawable.tag_3);
+    			break;
+    		}
+            
+            
+//        viewTag.levelImg.setImageResource((Integer) AlarmActivity.listItem.get(position).get("levelImg"));
 //        
 //        
 //        //設定內容時間
@@ -132,7 +146,7 @@ import android.widget.Toast;
             }  
         }
 //        //設定是否啓動
-        viewTag.checkBox.setChecked(launch[position]);
+        viewTag.checkBox.setChecked(AlarmActivity.launch[position]);
         
 
         viewTag.checkBox.setOnCheckedChangeListener(
@@ -142,7 +156,7 @@ import android.widget.Toast;
 					
 				public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
 				{
-					launch[position]=isChecked;
+					AlarmActivity.launch[position]=isChecked;
 //					Toast.makeText(context,(String)AlarmActivity.listItem.get(position).get("clockTime"), Toast.LENGTH_LONG).show();	
 					Intent intent = new Intent(context,AlarmReceiver.class);  
 	                Bundle bundle=new Bundle();
