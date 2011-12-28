@@ -34,7 +34,7 @@ public class GroupSelect extends Activity {
 
         g.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(GroupSelect.this, "" + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(GroupSelect.this, "" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.setClass(GroupSelect.this, GameStage.class);                   
                 startActivity(intent);

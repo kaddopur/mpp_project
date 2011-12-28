@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.MotionEvent;
@@ -17,8 +18,10 @@ public class GameStage extends Activity  {
 	ImageButton bt_back;
 	ImageButton stage[] = new ImageButton[15];
 	ImageButton star[] = new ImageButton[15];
-	int score[] = new int[15];
-	String question[] = {"官方網站", "觀光果園", "剛彈吊單槓", "紅粉鳳凰", "球傳給萬磁王", "四小時韓式小吃", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五"};
+	int score[] = new int[16];
+	String question[] = {"四十四隻石獅子", "塔滑湯灑湯燙塔", "山前有個崔腿粗", "魯夫人在哪", "李組長眉頭一皺", 
+			             "光芒萬丈", "官方網站", "觀光果園", "南港展覽館", "剛彈吊單槓", 
+			             "四小時韓式小吃", "剛果國際觀光果園", "光芒萬丈的官方網站", "球給志傑", "球傳給萬磁王"};
 	int lockStart = 6;
 	
 	@Override
@@ -28,10 +31,44 @@ public class GameStage extends Activity  {
         findViews();
         setListeners();
         
-        for(int i=lockStart-1; i<15; i++){
-        	stage[i].setImageResource(R.drawable.lock);
-        }
+        SharedPreferences settings = getSharedPreferences("Preference", 0);
+		score[0] = settings.getInt("score0", 0);
+		for (int i=1; i<15; i++) {
+			score[i] = settings.getInt("score" + i, -1);
+		}
     }
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		
+		for(int i=0; i<15; i++){
+			String viewID = "stage1_"+(i+1);
+			int resID = getResources().getIdentifier(viewID, "drawable", getPackageName());
+			
+        	switch(score[i]){
+        	case -1:
+        		star[i].setImageResource(R.drawable.star0);
+        		stage[i].setImageResource(R.drawable.lock);
+        		break;
+        	case 0:
+        		star[i].setImageResource(R.drawable.star0);
+        		stage[i].setImageResource(resID);
+        		break;
+        	case 1:
+        		star[i].setImageResource(R.drawable.star1);
+        		break;
+        	case 2:
+        		star[i].setImageResource(R.drawable.star2);
+        		break;
+        	case 3:
+        		star[i].setImageResource(R.drawable.star3);
+        		break;
+        	}
+        }
+	}
     
     private void startVoiceRecognitionActivity(int index) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -63,14 +100,33 @@ public class GameStage extends Activity  {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             int num_correct = 0;
+            double accuracy;
             for(int i=0; i<question[requestCode-1].length() && i<matches.get(0).length(); i++){
             	if(question[requestCode-1].charAt(i) == matches.get(0).charAt(i))
             		num_correct++;
             }
+            accuracy = 100.0*num_correct/question[requestCode-1].length();
             Toast.makeText(GameStage.this, "你說的是: " +matches.get(0), Toast.LENGTH_SHORT).show();
-            Toast.makeText(GameStage.this, "正確率: "+100.0*num_correct/question[requestCode-1].length()+"%", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameStage.this, "正確率: "+accuracy+"%", Toast.LENGTH_SHORT).show();
             
             
+            
+            if(accuracy >= 90){
+            	if(score[requestCode-1] < 3)
+            		score[requestCode-1]  = 3;
+            	if(score[requestCode] == -1)
+            		score[requestCode]  = 0;
+            }else if(accuracy >= 70){
+            	if(score[requestCode-1] < 2)
+            		score[requestCode-1]  = 2;
+            	if(score[requestCode] == -1)
+            		score[requestCode]  = 0;
+            }else if(accuracy >= 50){
+            	if(score[requestCode-1] < 1)
+            		score[requestCode-1]  = 1;
+            	if(score[requestCode] == -1)
+            		score[requestCode]  = 0;
+            }  
         }
     	super.onActivityResult(requestCode, resultCode, data);
     }
@@ -105,7 +161,9 @@ public class GameStage extends Activity  {
 			stage[i].setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					startVoiceRecognitionActivity(index+1);
+					if(score[index] > -1){
+						startVoiceRecognitionActivity(index+1);
+					}
 				}
 			});
 			
@@ -137,6 +195,15 @@ public class GameStage extends Activity  {
 			viewID = "star"+(i+1);
 			resID = getResources().getIdentifier(viewID, "id", getPackageName());
 			star[i] = (ImageButton)findViewById(resID);
+		}
+	}
+	@Override
+	protected void onPause(){
+		super.onPause();
+		SharedPreferences settings = getSharedPreferences("Preference", 0);
+		
+		for(int i=0;i<15;i++){
+			settings.edit().putInt("score"+i, score[i]).commit();
 		}
 	}
 }
