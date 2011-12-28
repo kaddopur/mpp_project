@@ -22,7 +22,6 @@ public class GameStage extends Activity  {
 	String question[] = {"四十四隻石獅子", "塔滑湯灑湯燙塔", "山前有個崔腿粗", "魯夫人在哪", "李組長眉頭一皺", 
 			             "光芒萬丈", "官方網站", "觀光果園", "南港展覽館", "剛彈吊單槓", 
 			             "四小時韓式小吃", "剛果國際觀光果園", "光芒萬丈的官方網站", "球給志傑", "球傳給萬磁王"};
-	int lockStart = 6;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
