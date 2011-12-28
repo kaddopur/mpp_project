@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -26,64 +27,17 @@ public class AlarmActivity extends Activity {
 	ListView list;
 	static ArrayList<HashMap<String, Object>> listItem;
 	MyAdapter listItemAdapter;
+    static boolean[] launch = new boolean[]{false,false,false}; 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_main);
         findViews();
         setListeners();
+        setPrefer();
         
-     // 绑定Layout里面的ListView
-     	list = (ListView) findViewById(R.id.listView1);
-     	listItem = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> mpp = new HashMap<String, Object>();
-		mpp.put("clockTime", "09:00上午");
-		mpp.put("clockTimeHour", "9");
-		mpp.put("clockTimeMinute", "0");
-		mpp.put("level", "0");
-		mpp.put("volumn", "50");
-		mpp.put("vibrate", "false");
-		mpp.put("day0", "false");
-		mpp.put("day1", "false");
-		mpp.put("day2", "false");
-		mpp.put("day3", "false");
-		mpp.put("day4", "false");
-		mpp.put("day5", "true");
-		mpp.put("day6", "false");
-		mpp.put("levelImg", R.drawable.tag_1);
-		listItem.add(mpp);
-		HashMap<String, Object> mpp2 = new HashMap<String, Object>();
-		mpp2.put("clockTime", "09:10上午");
-		mpp2.put("clockTimeHour", "9");
-		mpp2.put("clockTimeMinute", "10");
-		mpp2.put("level", "1");
-		mpp2.put("volumn", "50");
-		mpp2.put("vibrate", "true");
-		mpp2.put("day0", "true");
-		mpp2.put("day1", "false");
-		mpp2.put("day2", "true");
-		mpp2.put("day3", "false");
-		mpp2.put("day4", "false");
-		mpp2.put("day5", "true");
-		mpp2.put("day6", "false");
-		mpp2.put("levelImg", R.drawable.tag_2);
-		listItem.add(mpp2);
-		HashMap<String, Object> mpp3 = new HashMap<String, Object>();
-		mpp3.put("clockTime", "09:20上午");
-		mpp3.put("clockTimeHour", "9");
-		mpp3.put("clockTimeMinute", "20");
-		mpp3.put("level", "2");
-		mpp3.put("volumn", "50");
-		mpp3.put("vibrate", "true");
-		mpp3.put("day0", "true");
-		mpp3.put("day1", "true");
-		mpp3.put("day2", "true");
-		mpp3.put("day3", "true");
-		mpp3.put("day4", "true");
-		mpp3.put("day5", "true");
-		mpp3.put("day6", "false");
-		mpp3.put("levelImg", R.drawable.tag_3);
-		listItem.add(mpp3);
+
 		
      	// 生成适配器的Item和动态数组对应的元素
     	listItemAdapter = new MyAdapter(AlarmActivity.this, listItem,// 数据源
@@ -149,19 +103,19 @@ public class AlarmActivity extends Activity {
 		map3.put("clockTimeHour", Integer.toString(bundle.getInt("clockTimeHour")));
 		map3.put("clockTimeMinute",Integer.toString(bundle.getInt("clockTimeMinute")));
 		map3.put("level", Integer.toString(bundle.getInt("level")));
-		switch(bundle.getInt("level"))
-		{
-		case 0:
-			map3.put("levelImg", R.drawable.tag_1);
-			break;
-		case 1:
-			map3.put("levelImg", R.drawable.tag_2);
-			break;
-		case 2:
-			map3.put("levelImg", R.drawable.tag_3);
-			break;
-		}
-		
+//		switch(bundle.getInt("level"))
+//		{
+//		case 0:
+//			map3.put("levelImg", R.drawable.tag_1);
+//			break;
+//		case 1:
+//			map3.put("levelImg", R.drawable.tag_2);
+//			break;
+//		case 2:
+//			map3.put("levelImg", R.drawable.tag_3);
+//			break;
+//		}
+//		
 		map3.put("volumn", Integer.toString(bundle.getInt("volumn")));
 		map3.put("vibrate", Boolean.toString(bundle.getBoolean("vibrate")));
 		map3.put("day0", Boolean.toString(bundle.getBoolean("day0")));
@@ -201,7 +155,7 @@ public class AlarmActivity extends Activity {
 		});
 	}
     public void launchAlarm(int position){
-    	if(listItemAdapter.launch[position]){
+    	if(launch[position]){
     	HashMap<String, Object> map4 = (HashMap<String, Object>) list.getItemAtPosition(position);
     	Calendar calendar = Calendar.getInstance();
     	calendar.set(Calendar.HOUR_OF_DAY,  Integer.parseInt((String)map4.get("clockTimeHour")));
@@ -229,6 +183,128 @@ public class AlarmActivity extends Activity {
 	
 	private void findViews() {
 		bt_back = (ImageButton)findViewById(R.id.bt_back);
+		list = (ListView) findViewById(R.id.listView1);
+	}
+	private void setPrefer(){
+		SharedPreferences settings = getSharedPreferences("Preference1", 0);
+	     // 绑定Layout里面的ListView
+     	listItem = new ArrayList<HashMap<String, Object>>();
+		HashMap<String, Object> mpp = new HashMap<String, Object>();
+		mpp.put("clockTime", settings.getString("clockTime", "09:00上午"));
+		mpp.put("clockTimeHour", settings.getString("clockTimeHour", "9"));
+		mpp.put("clockTimeMinute", settings.getString("clockTimeMinute", "0"));
+		mpp.put("level", settings.getString("level", "0"));
+		mpp.put("volumn", settings.getString("volumn", "50"));
+		mpp.put("vibrate", settings.getString("vibrate", "true"));
+		mpp.put("day0", settings.getString("day0", "false"));
+		mpp.put("day1", settings.getString("day1", "false"));
+		mpp.put("day2", settings.getString("day2", "true"));
+		mpp.put("day3", settings.getString("day3", "false"));
+		mpp.put("day4", settings.getString("day4", "false"));
+		mpp.put("day5", settings.getString("day5", "true"));
+		mpp.put("day6", settings.getString("day6", "false"));
+//		mpp.put("levelImg", settings.getInt("levelImg",R.drawable.tag_1 ));
+		listItem.add(mpp);
+		settings = getSharedPreferences("Preference2", 0);
+		HashMap<String, Object> mpp2 = new HashMap<String, Object>();
+		mpp2.put("clockTime", settings.getString("clockTime", "09:10上午"));
+		mpp2.put("clockTimeHour", settings.getString("clockTimeHour", "9"));
+		mpp2.put("clockTimeMinute", settings.getString("clockTimeMinute", "10"));
+		mpp2.put("level", settings.getString("level", "0"));
+		mpp2.put("volumn", settings.getString("volumn", "20"));
+		mpp2.put("vibrate", settings.getString("vibrate", "true"));
+		mpp2.put("day0", settings.getString("day0", "false"));
+		mpp2.put("day1", settings.getString("day1", "true"));
+		mpp2.put("day2", settings.getString("day2", "true"));
+		mpp2.put("day3", settings.getString("day3", "true"));
+		mpp2.put("day4", settings.getString("day4", "true"));
+		mpp2.put("day5", settings.getString("day5", "true"));
+		mpp2.put("day6", settings.getString("day6", "false"));
+//		mpp2.put("levelImg", settings.getInt("levelImg",R.drawable.tag_1 ));
+		listItem.add(mpp2);
+		settings = getSharedPreferences("Preference3", 0);
+		HashMap<String, Object> mpp3 = new HashMap<String, Object>();
+		mpp3.put("clockTime", settings.getString("clockTime", "09:20上午"));
+		mpp3.put("clockTimeHour", settings.getString("clockTimeHour", "9"));
+		mpp3.put("clockTimeMinute", settings.getString("clockTimeMinute", "20"));
+		mpp3.put("level", settings.getString("level", "1"));
+		mpp3.put("volumn", settings.getString("volumn", "80"));
+		mpp3.put("vibrate", settings.getString("vibrate", "false"));
+		mpp3.put("day0", settings.getString("day0", "true"));
+		mpp3.put("day1", settings.getString("day1", "true"));
+		mpp3.put("day2", settings.getString("day2", "true"));
+		mpp3.put("day3", settings.getString("day3", "true"));
+		mpp3.put("day4", settings.getString("day4", "true"));
+		mpp3.put("day5", settings.getString("day5", "true"));
+		mpp3.put("day6", settings.getString("day6", "true"));
+//		mpp3.put("levelImg", settings.getInt("levelImg",R.drawable.tag_2 ));
+		listItem.add(mpp3);
+		launch[0]=settings.getBoolean("launch1", false);
+		launch[1]=settings.getBoolean("launch2", false);
+		launch[2]=settings.getBoolean("launch3", false);
 		
 	}
+	
+	
+	
+	
+	@Override
+	protected void onStop(){
+		super.onStop();
+		SharedPreferences settings = getSharedPreferences("Preference1", 0);
+		//置入name屬性的字串
+		HashMap<String, Object> map5 = (HashMap<String, Object>) list.getItemAtPosition(0);
+		settings.edit().putString("clockTime",(String)map5.get("clockTime") )
+		.putString("clockTimeHour",(String)map5.get("clockTimeHour") )
+		.putString("clockTimeMinute",(String)map5.get("clockTimeMinute") )
+		.putString("level",(String)map5.get("level") )
+		.putString("volumn", (String)map5.get("volumn"))
+		.putString("vibrate",(String)map5.get("vibrate") )
+		.putString("day0",(String)map5.get("day0") )
+		.putString("day1",(String)map5.get("day1") )
+		.putString("day2", (String)map5.get("day2"))
+		.putString("day3",(String)map5.get("day3") )
+		.putString("day4",(String)map5.get("day4") )
+		.putString("day5", (String)map5.get("day5"))
+		.putString("day6", (String)map5.get("day6")).commit();
+		
+		settings = getSharedPreferences("Preference2", 0);
+		map5 = (HashMap<String, Object>) list.getItemAtPosition(1);
+		settings.edit().putString("clockTime",(String)map5.get("clockTime") ).commit();
+		settings.edit().putString("clockTimeHour",(String)map5.get("clockTimeHour") ).commit();
+		settings.edit().putString("clockTimeMinute",(String)map5.get("clockTimeMinute") ).commit();
+		settings.edit().putString("level",(String)map5.get("level") ).commit();
+		settings.edit().putString("volumn", (String)map5.get("volumn")).commit();
+		settings.edit().putString("vibrate",(String)map5.get("vibrate") ).commit();
+		settings.edit().putString("day0",(String)map5.get("day0") ).commit();
+		settings.edit().putString("day1",(String)map5.get("day1") ).commit();
+		settings.edit().putString("day2", (String)map5.get("day2")).commit();
+		settings.edit().putString("day3",(String)map5.get("day3") ).commit();
+		settings.edit().putString("day4",(String)map5.get("day4") ).commit();
+		settings.edit().putString("day5", (String)map5.get("day5")).commit();
+		settings.edit().putString("day6", (String)map5.get("day6")).commit();
+//		settings.edit().putInt("levelImg",Integer.parseInt((String)map5.get("levelImg"))).commit();
+//		
+		settings = getSharedPreferences("Preference3", 0);
+		map5 = (HashMap<String, Object>) list.getItemAtPosition(2);
+		settings.edit().putString("clockTime",(String)map5.get("clockTime") ).commit();
+		settings.edit().putString("clockTimeHour",(String)map5.get("clockTimeHour") ).commit();
+		settings.edit().putString("clockTimeMinute",(String)map5.get("clockTimeMinute") ).commit();
+		settings.edit().putString("level",(String)map5.get("level") ).commit();
+		settings.edit().putString("volumn", (String)map5.get("volumn")).commit();
+		settings.edit().putString("vibrate",(String)map5.get("vibrate") ).commit();
+		settings.edit().putString("day0",(String)map5.get("day0") ).commit();
+		settings.edit().putString("day1",(String)map5.get("day1") ).commit();
+		settings.edit().putString("day2", (String)map5.get("day2")).commit();
+		settings.edit().putString("day3",(String)map5.get("day3") ).commit();
+		settings.edit().putString("day4",(String)map5.get("day4") ).commit();
+		settings.edit().putString("day5", (String)map5.get("day5")).commit();
+		settings.edit().putString("day6", (String)map5.get("day6")).commit();
+//		settings.edit().putInt("levelImg",Integer.parseInt((String)map5.get("levelImg"))).commit();
+		settings.edit().putBoolean("launch1", launch[0]).commit();
+		settings.edit().putBoolean("launch2", launch[1]).commit();
+		settings.edit().putBoolean("launch3", launch[2]).commit();
+	}
+	
+	
 }
