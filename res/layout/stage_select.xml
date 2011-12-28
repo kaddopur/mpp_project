@@ -21,158 +21,274 @@
         android:background="@null"
         android:src="@drawable/button_2" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="332dp"
-        android:layout_height="206dp"
-        android:layout_x="98dp"
-        android:layout_y="36dp"
-        android:orientation="vertical" >
+    <ImageButton
+        android:id="@+id/star1"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="80dp"
+        android:layout_y="20dp"
+        android:src="@drawable/star0" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="80dp"
+        android:layout_y="20dp"
+        android:src="@drawable/stage1_1" />
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star2"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="160dp"
+        android:layout_y="20dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="160dp"
+        android:layout_y="20dp"
+        android:src="@drawable/stage1_2" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star3"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="240dp"
+        android:layout_y="20dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="240dp"
+        android:layout_y="20dp"
+        android:src="@drawable/stage1_3" />
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star4"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="320dp"
+        android:layout_y="20dp"
+        android:src="@drawable/star0" />
 
-        </LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="320dp"
+        android:layout_y="20dp"
+        android:src="@drawable/stage1_4" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+    <ImageButton
+        android:id="@+id/star5"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="400dp"
+        android:layout_y="20dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="400dp"
+        android:layout_y="20dp"
+        android:src="@drawable/stage1_5" />
 
-            <ImageButton
-                android:id="@+id/imageButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star6"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="80dp"
+        android:layout_y="100dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="80dp"
+        android:layout_y="100dp"
+        android:src="@drawable/stage1_6" />
 
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star7"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="160dp"
+        android:layout_y="100dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="160dp"
+        android:layout_y="100dp"
+        android:src="@drawable/stage1_7" />
 
-        </LinearLayout>
+    <ImageButton
+        android:id="@+id/star8"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="240dp"
+        android:layout_y="100dp"
+        android:src="@drawable/star0" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="240dp"
+        android:layout_y="100dp"
+        android:src="@drawable/stage1_8" />
 
-            <ImageButton
-                android:id="@+id/imageButton11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star9"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="320dp"
+        android:layout_y="100dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton9"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="320dp"
+        android:layout_y="100dp"
+        android:src="@drawable/stage1_9" />
 
-            <ImageButton
-                android:id="@+id/imageButton13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star10"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="400dp"
+        android:layout_y="100dp"
+        android:src="@drawable/star0" />
 
-            <ImageButton
-                android:id="@+id/imageButton14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="400dp"
+        android:layout_y="100dp"
+        android:src="@drawable/stage1_10" />
 
-            <ImageButton
-                android:id="@+id/imageButton15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_weight="1"
-                android:src="@drawable/ic_launcher" />
+    <ImageButton
+        android:id="@+id/star11"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="80dp"
+        android:layout_y="180dp"
+        android:src="@drawable/star0" />
 
-        </LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton11"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="80dp"
+        android:layout_y="180dp"
+        android:src="@drawable/stage1_11" />
 
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/star12"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="160dp"
+        android:layout_y="180dp"
+        android:src="@drawable/star0" />
+
+    <ImageButton
+        android:id="@+id/imageButton12"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="160dp"
+        android:layout_y="180dp"
+        android:src="@drawable/stage1_12" />
+
+    <ImageButton
+        android:id="@+id/star13"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="240dp"
+        android:layout_y="180dp"
+        android:src="@drawable/star0" />
+
+    <ImageButton
+        android:id="@+id/imageButton13"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="240dp"
+        android:layout_y="180dp"
+        android:src="@drawable/stage1_13" />
+
+    <ImageButton
+        android:id="@+id/star14"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="320dp"
+        android:layout_y="180dp"
+        android:src="@drawable/star0" />
+
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="320dp"
+        android:layout_y="180dp"
+        android:src="@drawable/stage1_14" />
+
+    <ImageButton
+        android:id="@+id/star15"
+        android:layout_width="80px"
+        android:layout_height="102px"
+        android:layout_weight="1"
+        android:layout_x="400dp"
+        android:layout_y="180dp"
+        android:src="@drawable/star0" />
+
+    <ImageButton
+        android:id="@+id/imageButton15"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_weight="1"
+        android:layout_x="400dp"
+        android:layout_y="180dp"
+        android:src="@drawable/stage1_15" />
 
 </AbsoluteLayout>
