@@ -60,19 +60,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="易" />
+                    android:text="LV A" />
 
                 <RadioButton
                     android:id="@+id/radio1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="中" />
+                    android:text="LV B" />
 
                 <RadioButton
                     android:id="@+id/radio2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="難" />
+                    android:text="LV C" />
             </RadioGroup>
 
         </LinearLayout>

@@ -149,6 +149,19 @@ public class AlarmActivity extends Activity {
 		map3.put("clockTimeHour", Integer.toString(bundle.getInt("clockTimeHour")));
 		map3.put("clockTimeMinute",Integer.toString(bundle.getInt("clockTimeMinute")));
 		map3.put("level", Integer.toString(bundle.getInt("level")));
+		switch(bundle.getInt("level"))
+		{
+		case 0:
+			map3.put("levelImg", R.drawable.tag_1);
+			break;
+		case 1:
+			map3.put("levelImg", R.drawable.tag_2);
+			break;
+		case 2:
+			map3.put("levelImg", R.drawable.tag_3);
+			break;
+		}
+		
 		map3.put("volumn", Integer.toString(bundle.getInt("volumn")));
 		map3.put("vibrate", Boolean.toString(bundle.getBoolean("vibrate")));
 		map3.put("day0", Boolean.toString(bundle.getBoolean("day0")));
@@ -193,6 +206,9 @@ public class AlarmActivity extends Activity {
     	Calendar calendar = Calendar.getInstance();
     	calendar.set(Calendar.HOUR_OF_DAY,  Integer.parseInt((String)map4.get("clockTimeHour")));
     	calendar.set(Calendar.MINUTE,  Integer.parseInt((String)map4.get("clockTimeMinute")));
+    	if(calendar.getTimeInMillis()<System.currentTimeMillis())
+    		calendar.setTimeInMillis(calendar.getTimeInMillis()+(long)(24*60*60*1000));
+    	
     	//将秒和毫秒设置为0  
         calendar.set(Calendar.SECOND, 0);  
         calendar.set(Calendar.MILLISECOND, 0); 
