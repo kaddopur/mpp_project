@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kaddo"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="com.mpp.hayakuchi"
+    android:versionCode="5"
+    android:versionName="1.2.2" >
 
-    <uses-sdk android:minSdkVersion="10" />
+    <uses-sdk android:minSdkVersion="7" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,7 +19,7 @@
 
         <activity
             android:label="@string/app_name"
-            android:name=".MPP_PROJECTActivity"
+            android:name="com.mpp.hayakuchi.MPP_PROJECTActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter >
@@ -29,27 +29,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="GroupSelect"
+            android:name="com.mpp.hayakuchi.GroupSelect"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="GameStage"
+            android:name="com.mpp.hayakuchi.GameStage"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="AlarmActivity"
+            android:name="com.mpp.hayakuchi.AlarmActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="AlarmSetMenu"
+            android:name="com.mpp.hayakuchi.AlarmSetMenu"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
-            android:name="AlarmLaunch"
+            android:name=".AlarmLaunch"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>

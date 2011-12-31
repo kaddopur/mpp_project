@@ -1,7 +1,7 @@
-#Wed Dec 28 22:13:45 CST 2011
+#Thu Dec 29 04:13:30 CST 2011
 eclipse.preferences.version=1
-encoding//src/com/kaddo/AlarmActivity.java=UTF-8
-encoding//src/com/kaddo/AlarmLaunch.java=UTF-8
-encoding//src/com/kaddo/AlarmReceiver.java=UTF-8
-encoding//src/com/kaddo/AlarmSetMenu.java=UTF-8
-encoding//src/com/kaddo/MyAdapter.java=UTF-8
+encoding//src/com/mpp/hayakuchi/AlarmActivity.java=UTF-8
+encoding//src/com/mpp/hayakuchi/AlarmLaunch.java=UTF-8
+encoding//src/com/mpp/hayakuchi/AlarmReceiver.java=UTF-8
+encoding//src/com/mpp/hayakuchi/AlarmSetMenu.java=UTF-8
+encoding//src/com/mpp/hayakuchi/MyAdapter.java=UTF-8
