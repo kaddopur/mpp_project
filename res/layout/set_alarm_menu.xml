@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/AbsoluteLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@drawable/back_2" >
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <DigitalClock
+        android:id="@+id/digitalClock1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="0dp"
-        android:layout_y="0dp"
-        android:src="@drawable/back_2" />
-
-    <ImageButton
-        android:id="@+id/bt_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="17dp"
-        android:layout_y="258dp"
-        android:background="@null"
-        android:src="@drawable/button_2" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="DigitalClock"
+        android:textSize="25dp" 
+        android:textColor="#FFFFFF"/>
 
     <TimePicker
         android:id="@+id/timePicker1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:layout_width="147dp"
-        android:layout_height="wrap_content"
-        android:layout_x="9dp"
-        android:layout_y="86dp" />
-
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="236dp"
-        android:layout_x="178dp"
-        android:layout_y="45dp"
-        android:gravity="fill_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@+id/timePicker1"
+        android:gravity="top"
         android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="top" >
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Level            "
+                android:text="Level        "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <RadioGroup
@@ -74,37 +76,42 @@
                     android:layout_height="wrap_content"
                     android:text="LV C" />
             </RadioGroup>
-
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="top" >
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Volume        "
+                android:text="Volume    "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <SeekBar
                 android:id="@+id/seekBar1"
                 android:layout_width="194dp"
-                android:layout_height="wrap_content" android:max="100"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="100" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vibrate         "
+                android:text="Vibrate     "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <CheckBox
@@ -117,13 +124,17 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical" android:onClick="repeatOnClick" android:clickable="true">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:onClick="repeatOnClick" >
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Repeat          "
+                android:text="Repeat      "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -177,13 +188,15 @@
         </LinearLayout>
     </LinearLayout>
 
-    <DigitalClock
-        android:id="@+id/digitalClock1"
+    <ImageButton
+        android:id="@+id/bt_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="28dp"
-        android:layout_y="48dp"
-        android:text="DigitalClock"
-        android:textSize="22dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@null"
+        android:src="@drawable/button_2" />
 
-</AbsoluteLayout>
+</RelativeLayout>

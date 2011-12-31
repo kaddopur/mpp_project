@@ -1,283 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/AbsoluteLayout1" android:layout_width="match_parent"
-	android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_2" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_x="0dp"
+        android:layout_y="10dp"
+        android:orientation="vertical" >
 
-	<ImageView android:id="@+id/imageView1" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_x="0dp"
-		android:layout_y="0dp" android:src="@drawable/back_2" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-	<ImageButton android:id="@+id/bt_back"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_x="17dp" android:layout_y="258dp" android:background="@null"
-		android:src="@drawable/button_2" />
-
-	<LinearLayout
-	    android:id="@+id/linearLayout1"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_x="0dp"
-	    android:layout_y="10dp"
-	    android:orientation="vertical" >
-
-	    <RelativeLayout
-	        android:id="@+id/relativeLayout1"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
+            <ImageButton
+                android:id="@+id/star3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star3"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_centerHorizontal="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star3"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton3"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star3"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/star3"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star4"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toRightOf="@+id/star3"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star4"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton4"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star4"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/star4"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star5"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toRightOf="@+id/star4"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star5"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton5"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star5"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star3"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star2"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star3"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star2"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton2"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star2"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star2"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star1"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star2"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star1"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
+        </RelativeLayout>
 
-	        <ImageButton
-	            android:id="@+id/imageButton1"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star1"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
-	    </RelativeLayout>
-
-	    <RelativeLayout
-	        android:id="@+id/relativeLayout2"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-	        <ImageButton
-	            android:id="@+id/star8"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_centerHorizontal="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton8"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star8"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star8"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star7"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star8"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star8"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton7"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star7"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star7"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star6"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star7"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star7"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton6"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star6"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star6"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star9"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toRightOf="@+id/star8"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/star8"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton9"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star9"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star9"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star10"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toRightOf="@+id/star9"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/star9"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton10"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star10"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
-	    </RelativeLayout>
-
-	    <RelativeLayout
-	        android:id="@+id/relativeLayout3"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star10"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
+        </RelativeLayout>
 
-	        <ImageButton
-	            android:id="@+id/star13"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_centerHorizontal="true"
-	            android:layout_weight="1" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-	        <ImageButton
-	            android:id="@+id/imageButton13"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star13"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star12"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star13"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star13"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton12"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star12"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star13"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star11"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star12"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star12"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton11"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toLeftOf="@+id/star12"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star12"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star14"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toRightOf="@+id/star13"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/star12"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton14"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star14"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/star14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/star13"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/star15"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignParentTop="true"
-	            android:layout_toRightOf="@+id/star14"
-	            android:layout_weight="1" />
+            <ImageButton
+                android:id="@+id/imageButton14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star14"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
 
-	        <ImageButton
-	            android:id="@+id/imageButton15"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/star15"
-	            android:layout_alignParentTop="true"
-	            android:layout_weight="1" />
-	    </RelativeLayout>
+            <ImageButton
+                android:id="@+id/star15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/star14"
+                android:layout_weight="1" />
 
-	</LinearLayout>
+            <ImageButton
+                android:id="@+id/imageButton15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/star15"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1" />
+        </RelativeLayout>
+    </LinearLayout>
 
-</AbsoluteLayout>
+    <ImageButton
+        android:id="@+id/bt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@null"
+        android:src="@drawable/button_2" />
+
+</RelativeLayout>
