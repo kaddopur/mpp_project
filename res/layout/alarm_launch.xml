@@ -31,6 +31,6 @@
         android:layout_below="@+id/digitalClock1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
-        android:src="@drawable/button_1" ></ImageButton>
+        android:src="@drawable/button_1" android:background="@null"></ImageButton>
 
 </RelativeLayout>

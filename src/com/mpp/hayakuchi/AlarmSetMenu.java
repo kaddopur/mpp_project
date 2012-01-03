@@ -64,25 +64,26 @@ public class AlarmSetMenu extends Activity{
     	bt_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				timeToString();
 //				Toast.makeText(AlarmSetMenu.this, 
 //					       clockTime, Toast.LENGTH_LONG).show();
-				Intent intent = new Intent();
-				intent.setClass(AlarmSetMenu.this, AlarmActivity.class);
+				Intent intentBk = new Intent();
+				intentBk.setClass(AlarmSetMenu.this, AlarmActivity.class);
 				//設�??��??�數
-				Bundle bundle = new Bundle();
-				bundle.putInt("clockTimeHour", setHour);
-				bundle.putInt("clockTimeMinute", setMinute);
-				bundle.putInt("level", setLevel);
-				bundle.putInt("volumn", setVolumn);
-				bundle.putBoolean("vibrate", setVibrate);
+				Bundle bundleBk = new Bundle();
+				bundleBk.putInt("clockTimeHour", setHour);
+				bundleBk.putInt("clockTimeMinute", setMinute);
+				bundleBk.putInt("level", setLevel);
+				bundleBk.putInt("volumn", setVolumn);
+				bundleBk.putBoolean("vibrate", setVibrate);
 				for(int i=0;i<7;i++)
 		        {
-					bundle.putBoolean("day"+i, repeatDay[i]);
+					bundleBk.putBoolean("day"+i, repeatDay[i]);
 				}
-				bundle.putString("clockTime", clockTime);
-				intent.putExtras(bundle);
-				setResult(RESULT_OK, intent);
+				bundleBk.putString("clockTime", clockTime);
+				intentBk.putExtras(bundleBk);
+				setResult(RESULT_OK, intentBk);
 				finish();
 			}
 		});
@@ -307,4 +308,34 @@ public class AlarmSetMenu extends Activity{
              }  
          }  
 	}
+	
+	
+	
+	 @Override
+		 public void onBackPressed() {
+//		 
+		 timeToString();
+//			Toast.makeText(AlarmSetMenu.this, 
+//				       clockTime, Toast.LENGTH_LONG).show();
+			Intent intentBk = new Intent();
+			intentBk.setClass(AlarmSetMenu.this, AlarmActivity.class);
+			//設�??��??�數
+			Bundle bundleBk = new Bundle();
+			bundleBk.putInt("clockTimeHour", setHour);
+			bundleBk.putInt("clockTimeMinute", setMinute);
+			bundleBk.putInt("level", setLevel);
+			bundleBk.putInt("volumn", setVolumn);
+			bundleBk.putBoolean("vibrate", setVibrate);
+			for(int i=0;i<7;i++)
+	        {
+				bundleBk.putBoolean("day"+i, repeatDay[i]);
+			}
+			bundleBk.putString("clockTime", clockTime);
+			intentBk.putExtras(bundleBk);
+			setResult(RESULT_OK, intentBk);
+//			Toast.makeText(AlarmSetMenu.this, clockTime+":"+setLevel+":"+setVolumn+":"+setVibrate, Toast.LENGTH_LONG).show();
+//			
+			super.onBackPressed();
+		 }
+	
 }
