@@ -2,21 +2,25 @@ package com.mpp.hayakuchi;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class MPP_PROJECTActivity extends Activity {
     private ImageButton bt_start;
-    
+    private ImageView titleImage;
+    AnimationDrawable fireAnimation;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.title);
         findViews();
         setListeners();
+        
         /*
         PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
@@ -37,7 +41,7 @@ public class MPP_PROJECTActivity extends Activity {
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass().getPackage().getName());
 
         // Display an hint to the user about what he should say.
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Â¶¤f¥O°Õ");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Â¶ï¿½fï¿½Oï¿½ï¿½");
 
         // Given an hint to the recognizer about what the user is going to say
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -61,27 +65,27 @@ public class MPP_PROJECTActivity extends Activity {
     	if (requestCode == VOICE_RECOGNITION_REQUEST_CODE_1 && resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            String q = "¦Y¸²µå¤£¦R¸²µå¥Ö";
+            String q = "ï¿½Yï¿½ï¿½ï¿½å¤£ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½";
             int num_correct = 0;
             for(int i=0; i<q.length() && i<matches.get(0).length(); i++){
             	if(q.charAt(i) == matches.get(0).charAt(i))
             		num_correct++;
             }
-            Toast.makeText(MPP_PROJECTActivity.this, "§A»¡ªº¬O: " +matches.get(0), Toast.LENGTH_SHORT).show();
-            Toast.makeText(MPP_PROJECTActivity.this, "¥¿½T²v: "+100.0*num_correct/q.length()+"%", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MPP_PROJECTActivity.this, "ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½O: " +matches.get(0), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MPP_PROJECTActivity.this, "ï¿½ï¿½ï¿½Tï¿½v: "+100.0*num_correct/q.length()+"%", Toast.LENGTH_SHORT).show();
             
             
         } else if (requestCode == VOICE_RECOGNITION_REQUEST_CODE_2 && resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            String q = "¥|¤Q¥|°¦¥Û·à¤l";
+            String q = "ï¿½|ï¿½Qï¿½|ï¿½ï¿½ï¿½Û·ï¿½l";
             int num_correct = 0;
             for(int i=0; i<q.length() && i<matches.get(0).length(); i++){
             	if(q.charAt(i) == matches.get(0).charAt(i))
             		num_correct++;
             }
-            Toast.makeText(MPP_PROJECTActivity.this, "§A»¡ªº¬O: " +matches.get(0), Toast.LENGTH_SHORT).show();
-            Toast.makeText(MPP_PROJECTActivity.this, "¥¿½T²v: "+100.0*num_correct/q.length()+"%", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MPP_PROJECTActivity.this, "ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½O: " +matches.get(0), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MPP_PROJECTActivity.this, "ï¿½ï¿½ï¿½Tï¿½v: "+100.0*num_correct/q.length()+"%", Toast.LENGTH_SHORT).show();
             
         }
     	super.onActivityResult(requestCode, resultCode, data);
@@ -115,7 +119,22 @@ public class MPP_PROJECTActivity extends Activity {
 	
 	private void findViews() {
 		bt_start = (ImageButton)findViewById(R.id.bt_start);
+		titleImage =(ImageView)findViewById(R.id.imageView1);
+		titleImage.setBackgroundResource(R.anim.fireanim);
+		fireAnimation =(AnimationDrawable)titleImage.getBackground(); 
+		
 	}
+	
+	  //Start Frame Animationå‹•ç•«
+    @Override 
+    public void onWindowFocusChanged(boolean hasFocus) { 
+    	super.onWindowFocusChanged(hasFocus);
+    	if (hasFocus) { 
+    		fireAnimation.start();
+    	} else { 
+    		fireAnimation.stop();
+    	} 
+    } 
 	
 	
 }
