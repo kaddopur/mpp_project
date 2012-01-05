@@ -17,5 +17,17 @@ public class Music {
 		mp.setLooping(false);
 		mp.start();
 	}
+	
+	static void playGood(Context context){
+		mp = MediaPlayer.create(context, R.raw.good);
+		mp.setLooping(false);
+		mp.start();
+	}
+	
+	static void playBad(Context context){
+		mp = MediaPlayer.create(context, R.raw.bad);
+		mp.setLooping(false);
+		mp.start();
+	}
 
 }
