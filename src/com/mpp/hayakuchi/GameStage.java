@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GameStage extends Activity  {
@@ -22,6 +23,7 @@ public class GameStage extends Activity  {
 	ImageButton stage[] = new ImageButton[15];
 	ImageButton star[] = new ImageButton[15];
 	ImageButton outside, menu, retry, next, dialog;
+	TextView whatYouSaid, accuracyField, matchField;
 	boolean isScoring = false;
 	final int questionLength = 15;
 	
@@ -66,8 +68,24 @@ public class GameStage extends Activity  {
 	
 	private void showScore(int index, String match, double accuracy) {
 		final int target = index;
+		whatYouSaid.setVisibility(View.VISIBLE);
+		accuracyField.setVisibility(View.VISIBLE);
+		accuracyField.setText("正確率："+accuracy+"%");
+		
+		matchField.setVisibility(View.VISIBLE);
+		matchField.setText(match);
+		
 		outside.setVisibility(View.VISIBLE);
 		dialog.setVisibility(View.VISIBLE);
+		if(accuracy >= 90){
+			dialog.setImageResource(R.drawable.dialog_star3);
+		}else if(accuracy >= 70){
+			dialog.setImageResource(R.drawable.dialog_star2);
+		}else if(accuracy >= 50){
+			dialog.setImageResource(R.drawable.dialog_star1);
+		}else {
+			dialog.setImageResource(R.drawable.dialog_star0);
+		}
 		menu.setVisibility(View.VISIBLE);
 		retry.setVisibility(View.VISIBLE);
 		retry.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +120,9 @@ public class GameStage extends Activity  {
 	}
 
 	private void clearScore() {
+		whatYouSaid.setVisibility(View.INVISIBLE);
+		accuracyField.setVisibility(View.INVISIBLE);
+		matchField.setVisibility(View.INVISIBLE);
 		outside.setVisibility(View.INVISIBLE);
 		dialog.setVisibility(View.INVISIBLE);
 		menu.setVisibility(View.INVISIBLE);
@@ -228,7 +249,8 @@ public class GameStage extends Activity  {
 			}
 		}
 		
-		return Math.max(0.0, 100.0 * okCount/question.length() - Math.abs(question.length() - answer.length()) * 3.0);
+		double result = Math.max(0.0, 100.0 * okCount/question.length() - Math.abs(question.length() - answer.length()) * 3.0);
+		return Math.round(result*10)/10;
 	}
 
 	@Override
@@ -380,6 +402,9 @@ public class GameStage extends Activity  {
 		retry = (ImageButton)findViewById(R.id.retry);
 		next = (ImageButton)findViewById(R.id.next);
 		dialog = (ImageButton)findViewById(R.id.dialog);
+		whatYouSaid = (TextView)findViewById(R.id.whatYouSaid);
+		accuracyField = (TextView)findViewById(R.id.accuracyField);
+		matchField = (TextView)findViewById(R.id.matchField);
 	}
 	
 	@Override

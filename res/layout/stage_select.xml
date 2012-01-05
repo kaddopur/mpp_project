@@ -330,4 +330,40 @@
         android:background="@null"
         android:src="@drawable/right_arrow" />
 
+    <TextView
+        android:id="@+id/whatYouSaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/dialog"
+        android:layout_alignLeft="@+id/dialog"
+        android:layout_marginTop="37dp"
+        android:layout_marginLeft="30dp"
+        android:text="你說的是"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <TextView
+        android:id="@+id/accuracyField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/dialog"
+        android:layout_alignRight="@+id/dialog"
+        android:layout_marginTop="37dp"
+        android:layout_marginRight="70dp"
+        android:text="正確率：20%"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/matchField"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/dialog"
+        android:layout_alignLeft="@+id/dialog"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:text=""
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </RelativeLayout>
