@@ -70,19 +70,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="LV A" />
+                        android:text="LV 1" />
 
                     <RadioButton
                         android:id="@+id/radio1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="LV B" />
+                        android:text="LV 2" />
 
                     <RadioButton
                         android:id="@+id/radio2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="LV C" />
+                        android:text="LV 3" />
                 </RadioGroup>
             </LinearLayout>
 

@@ -27,9 +27,10 @@ public class AlarmLaunch extends Activity {
 	ImageButton bt_start;
 	Random r = new java.util.Random();
 
-	String question[] = {"四十四隻石獅子", "塔滑湯灑湯燙塔", "山前有個崔腿粗", "魯夫人在哪", "李組長眉頭一皺", 
-                         "光芒萬丈", "官方網站", "觀光果園", "南港展覽館", "剛彈吊單槓", 
-                         "四小時韓式小吃", "剛果國際觀光果園", "光芒萬丈的官方網站", "球給志傑", "球傳給萬磁王"};
+	String[][] question = { { "魯肉飯", "漢堡吃到飽", "中永和萬磁王", "寶傑我跟你說", "語音辨識帥到掉渣", "球給志傑", "潮到出水", "在釣竿港釣魚", "薛丁格的哆啦a夢", "李組長眉頭一皺發現案情並不單純", "魯夫人好嗎", "史詩大師", "時事雜誌", "四十四隻石獅子", "和尚端湯上塔", "" },
+			{ "花卉博覽會", "南港展覽館", "連我爸都沒打過我", "四小時韓式小吃","城市南市屈臣氏", "寬版電單車登場", "山前有個崔腿粗", "人中出呂布馬中出赤兔", "吃葡萄不吐葡萄皮","官方網站", "觀光果園", "光芒萬丈", "剛果國際觀光果園", "剛彈吊單槓", "光芒萬丈的官方網站","" },
+			{ "財團法人資訊工業策進會", "你的東西就是我的東西我的東西還是我的東西","抽煙肺會飛", "小菲也會飛", "第一化肥發灰", "化肥會揮發",  "黑化肥發灰", "吃葡萄不吐葡萄皮不吃葡萄倒吐葡萄", "和尚端湯上塔塔滑湯灑湯燙塔","施氏食獅史", "唐三藏上梁山", "銘傳商專是山莊上的商專", "脫光光到南港展覽館觀光", "光芒萬丈的南港展覽館官方網站", "黑化肥發灰灰化肥發黑", "" } };
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class AlarmLaunch extends Activity {
 		// where the first result is the one with higher confidence.
 		intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
 
-		intent.putExtra(RecognizerIntent.EXTRA_PROMPT, question[index - 1]);
+		intent.putExtra(RecognizerIntent.EXTRA_PROMPT, question[Level][index - 1]);
 		Log.e("crash", "before start new activity");
 		startActivityForResult(intent, index);
 
@@ -128,17 +129,20 @@ public class AlarmLaunch extends Activity {
 			// Fill the list view with the strings the recognizer thought it
 			// could have heard
 			ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-			int num_correct = 0;
-			double accuracy;
-			for (int i = 0; i < question[requestCode - 1].length() && i < matches.get(0).length(); i++) {
-				if (question[requestCode - 1].charAt(i) == matches.get(0).charAt(i))
-					num_correct++;
-			}
-			accuracy = 100.0 * num_correct / question[requestCode - 1].length();
-			Toast.makeText(this, "你說的是: " +matches.get(0), Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "正確率: "+accuracy+"%", Toast.LENGTH_SHORT).show();
+            double bestAccuracy = -1.0;
+            String bestMatch = "";
             
-			if (accuracy >= 80) {
+            for(String match: matches){
+            	double curAccuracy = calAccuracy(question[Level][requestCode-1], match);
+            	if(curAccuracy > bestAccuracy){
+            		bestMatch = match;
+            		bestAccuracy = curAccuracy;
+            	}
+            }
+			Toast.makeText(this, "你說的是: " +matches.get(0), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "正確率: "+bestAccuracy+"%", Toast.LENGTH_SHORT).show();
+            
+			if (bestAccuracy >= 80) {
 				finish();
 			}else{
 				bt_start.setImageResource(R.drawable.retry_big);
@@ -157,5 +161,27 @@ public class AlarmLaunch extends Activity {
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-
+	
+	private double calAccuracy(String question, String answer) {
+		int aHead = 0;
+		int okCount = 0;
+		
+		for(int i=0; i<question.length(); i++){
+			if(aHead >= answer.length())
+				break;
+			try{
+				int j = aHead;
+				while(answer.charAt(j) != question.charAt(i)){
+					j++;
+				}
+				aHead = j+1;
+				okCount += 1;
+			}catch(StringIndexOutOfBoundsException e){
+				continue;
+			}
+		}
+		
+		double result = Math.max(0.0, 100.0 * okCount/question.length() - Math.abs(question.length() - answer.length()) * 3.0);
+		return Math.round(result*10)/10;
+	}
 }

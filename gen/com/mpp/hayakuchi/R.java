@@ -199,8 +199,11 @@ public final class R {
         public static final int title=0x7f030007;
     }
     public static final class raw {
-        public static final int press=0x7f050000;
-        public static final int ring=0x7f050001;
+        public static final int bad=0x7f050000;
+        public static final int good=0x7f050001;
+        public static final int press=0x7f050002;
+        public static final int quiz=0x7f050003;
+        public static final int ring=0x7f050004;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
