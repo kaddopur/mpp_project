@@ -171,6 +171,7 @@ public class GameStage extends Activity  {
 	}
     
     private void startVoiceRecognitionActivity(int index) {
+    	Music.playQuiz(GameStage.this);
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
         // Specify the calling package to identify your application

@@ -11,5 +11,11 @@ public class Music {
 		mp.setLooping(false);
 		mp.start();
 	}
+	
+	static void playQuiz(Context context){
+		mp = MediaPlayer.create(context, R.raw.quiz);
+		mp.setLooping(false);
+		mp.start();
+	}
 
 }
