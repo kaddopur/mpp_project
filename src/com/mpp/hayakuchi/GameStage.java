@@ -26,12 +26,13 @@ public class GameStage extends Activity  {
 	TextView whatYouSaid, accuracyField, matchField;
 	boolean isScoring = false;
 	final int questionLength = 15;
+	final int stageNumber = 3;
 	
-	int score[] = new int[16];
+	int[][] score = new int[stageNumber][16];
 	int groupID = 1;
-	String question[] = {"火雞肉飯", "魯肉飯", "球傳給萬磁王", "�|�ҤH�b��", "���ժ���Y�@�K", 
-			             "��~�U�V", "�x�����", "�[��G��", "�n��i���]", "��u�Q��b", 
-			             "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "資訊系", "台大", "政大"};
+	String[][] question = { { "火雞肉飯", "魯肉飯", "球傳給萬磁王", "�|�ҤH�b��", "���ժ���Y�@�K", "��~�U�V", "�x�����", "�[��G��", "�n��i���]", "��u�Q��b", "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "資訊系", "台大", "政大" },
+			{ "車車", "科科", "球傳給萬磁王", "�|�ҤH�b��", "���ժ���Y�@�K", "��~�U�V", "�x�����", "�[��G��", "�n��i���]", "��u�Q��b", "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "資訊系", "台大", "政大" },
+			{ "蘋果", "戴爾", "球傳給萬磁王", "�|�ҤH�b��", "���ժ���Y�@�K", "��~�U�V", "�x�����", "�[��G��", "�n��i���]", "��u�Q��b", "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "資訊系", "台大", "政大" } };
 	RelativeLayout background;
 	
 	@Override
@@ -59,24 +60,22 @@ public class GameStage extends Activity  {
         clearScore();
         
         SharedPreferences settings = getSharedPreferences("Preference", 0);
-		score[0] = settings.getInt("score0", 0);
-		for (int i=1; i<15; i++) {
-			score[i] = settings.getInt("score" + i, -1);
-		}
-		
+        
+        for(int i=1; i<=stageNumber; i++){
+			score[i-1][0] = settings.getInt("score"+i+"_0", 0);
+			for (int j=1; j<15; j++) {
+				score[i-1][j] = settings.getInt("score"+i+"_"+j, -1);
+			}
+        }
     }
 	
 	private void showScore(int index, String match, double accuracy) {
 		final int target = index;
-		whatYouSaid.setVisibility(View.VISIBLE);
-		accuracyField.setVisibility(View.VISIBLE);
+		
 		accuracyField.setText("正確率："+accuracy+"%");
 		
-		matchField.setVisibility(View.VISIBLE);
 		matchField.setText(match);
 		
-		outside.setVisibility(View.VISIBLE);
-		dialog.setVisibility(View.VISIBLE);
 		if(accuracy >= 90){
 			dialog.setImageResource(R.drawable.dialog_star3);
 		}else if(accuracy >= 70){
@@ -86,16 +85,15 @@ public class GameStage extends Activity  {
 		}else {
 			dialog.setImageResource(R.drawable.dialog_star0);
 		}
-		menu.setVisibility(View.VISIBLE);
-		retry.setVisibility(View.VISIBLE);
+		
 		retry.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				startVoiceRecognitionActivity(target);
 			}
 		});
-		next.setVisibility(View.VISIBLE);
-		if(score[index] >= 0){
+		
+		if(score[groupID-1][index] >= 0){
 			next.setImageResource(R.drawable.right_arrow);
 			next.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -117,6 +115,15 @@ public class GameStage extends Activity  {
 			});
 		}
 		isScoring = true;
+		
+		whatYouSaid.setVisibility(View.VISIBLE);
+		accuracyField.setVisibility(View.VISIBLE);
+		matchField.setVisibility(View.VISIBLE);
+		outside.setVisibility(View.VISIBLE);
+		dialog.setVisibility(View.VISIBLE);
+		menu.setVisibility(View.VISIBLE);
+		retry.setVisibility(View.VISIBLE);
+		next.setVisibility(View.VISIBLE);
 	}
 
 	private void clearScore() {
@@ -141,7 +148,7 @@ public class GameStage extends Activity  {
 			String viewID = "stage"+ groupID + "_" +(i+1);
 			int resID = getResources().getIdentifier(viewID, "drawable", getPackageName());
 			
-        	switch(score[i]){
+        	switch(score[groupID-1][i]){
         	case -1:
         		star[i].setImageResource(R.drawable.star0);
         		stage[i].setImageResource(R.drawable.lock);
@@ -181,7 +188,7 @@ public class GameStage extends Activity  {
         // where the first result is the one with higher confidence.
         intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
         
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, question[index-1]);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, question[groupID-1][index-1]);
     	startActivityForResult(intent, index);
         
     }
@@ -196,7 +203,7 @@ public class GameStage extends Activity  {
             String bestMatch = "";
             
             for(String match: matches){
-            	double curAccuracy = calAccuracy(question[requestCode-1], match);
+            	double curAccuracy = calAccuracy(question[groupID-1][requestCode-1], match);
             	if(curAccuracy > bestAccuracy){
             		bestMatch = match;
             		bestAccuracy = curAccuracy;
@@ -208,20 +215,20 @@ public class GameStage extends Activity  {
     
             
             if(bestAccuracy >= 90){
-            	if(score[requestCode-1] < 3)
-            		score[requestCode-1]  = 3;
-            	if(score[requestCode] == -1)
-            		score[requestCode]  = 0;
+            	if(score[groupID-1][requestCode-1] < 3)
+            		score[groupID-1][requestCode-1]  = 3;
+            	if(score[groupID-1][requestCode] == -1)
+            		score[groupID-1][requestCode]  = 0;
             }else if(bestAccuracy >= 70){
-            	if(score[requestCode-1] < 2)
-            		score[requestCode-1]  = 2;
-            	if(score[requestCode] == -1)
-            		score[requestCode]  = 0;
+            	if(score[groupID-1][requestCode-1] < 2)
+            		score[groupID-1][requestCode-1]  = 2;
+            	if(score[groupID-1][requestCode] == -1)
+            		score[groupID-1][requestCode]  = 0;
             }else if(bestAccuracy >= 50){
-            	if(score[requestCode-1] < 1)
-            		score[requestCode-1]  = 1;
-            	if(score[requestCode] == -1)
-            		score[requestCode]  = 0;
+            	if(score[groupID-1][requestCode-1] < 1)
+            		score[groupID-1][requestCode-1]  = 1;
+            	if(score[groupID-1][requestCode] == -1)
+            		score[groupID-1][requestCode]  = 0;
             }  
             
             showScore(requestCode, bestMatch, bestAccuracy);
@@ -349,12 +356,11 @@ public class GameStage extends Activity  {
 		});
 	
     	for(int i=0; i<15; i++){
-    		final int index = i;
-    		
+    		final int index = i;	
 			stage[i].setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if(score[index] > -1){
+					if(score[groupID-1][index] > -1){
 						startVoiceRecognitionActivity(index+1);
 					}
 				}
@@ -412,8 +418,10 @@ public class GameStage extends Activity  {
 		super.onPause();
 		SharedPreferences settings = getSharedPreferences("Preference", 0);
 		
-		for(int i=0;i<15;i++){
-			settings.edit().putInt("score"+i, score[i]).commit();
+		for(int i=1; i<=stageNumber; i++){
+			for(int j=0;j<15;j++){
+				settings.edit().putInt("score"+i+"_"+j, score[i-1][j]).commit();
+			}
 		}
 	}
 	
