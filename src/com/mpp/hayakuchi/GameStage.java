@@ -13,26 +13,46 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class GameStage extends Activity  {
 	ImageButton bt_back;
 	ImageButton stage[] = new ImageButton[15];
 	ImageButton star[] = new ImageButton[15];
+	ImageButton outside, menu, retry, next, dialog;
+	boolean isScoring = false;
+	
 	int score[] = new int[16];
 	int groupID = 1;
-	String question[] = {"¥|¤Q¥|°¦¥Û·à¤l", "¶ð·Æ´öÅx´ö¿S¶ð", "¤s«e¦³­Ó±Z»L²Ê", "¾|¤Ò¤H¦b­þ", "§õ²Õªø¬ÜÀY¤@½K", 
-			             "¥ú¨~¸U¤V", "©x¤èºô¯¸", "Æ[¥úªG¶é", "«n´ä®iÄýÀ]", "­è¼u¦Q³æºb", 
-			             "¥|¤p®ÉÁú¦¡¤p¦Y", "­èªG°ê»ÚÆ[¥úªG¶é", "¥ú¨~¸U¤Vªº©x¤èºô¯¸", "²yµ¹§Ó³Ç", "²y¶Çµ¹¸UºÏ¤ý"};
+	String question[] = {"ï¿½|ï¿½Qï¿½|ï¿½ï¿½ï¿½Û·ï¿½l", "ï¿½ï¿½Æ´ï¿½ï¿½xï¿½ï¿½ï¿½Sï¿½ï¿½", "ï¿½sï¿½eï¿½ï¿½ï¿½Ó±Zï¿½Lï¿½ï¿½", "ï¿½|ï¿½Ò¤Hï¿½bï¿½ï¿½", "ï¿½ï¿½ï¿½Õªï¿½ï¿½ï¿½Yï¿½@ï¿½K", 
+			             "ï¿½ï¿½~ï¿½Uï¿½V", "ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½[ï¿½ï¿½Gï¿½ï¿½", "ï¿½nï¿½ï¿½iï¿½ï¿½ï¿½]", "ï¿½ï¿½uï¿½Qï¿½ï¿½b", 
+			             "ï¿½|ï¿½pï¿½ï¿½ï¿½ï¿½pï¿½Y", "ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½Gï¿½ï¿½", "ï¿½ï¿½~ï¿½Uï¿½Vï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½yï¿½ï¿½ï¿½Ó³ï¿½", "ï¿½yï¿½Çµï¿½ï¿½Uï¿½Ï¤ï¿½"};
+	RelativeLayout background;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stage_select);
         groupID = this.getIntent().getExtras().getInt("groupID");
-        
+        background = (RelativeLayout)findViewById(R.id.stage_bg);
+		switch (groupID) {
+		case 1:
+			background.setBackgroundResource(R.drawable.back_stage_1);
+			break;
+		case 2:
+			background.setBackgroundResource(R.drawable.back_stage_2);
+			break;
+		case 3:
+			background.setBackgroundResource(R.drawable.back_stage_3);
+			break;
+		default:
+			background.setBackgroundResource(R.drawable.back_stage_1);
+		}
+     
         findViews();
         setListeners();
+        clearDialog();
         
         SharedPreferences settings = getSharedPreferences("Preference", 0);
 		score[0] = settings.getInt("score0", 0);
@@ -42,6 +62,24 @@ public class GameStage extends Activity  {
 		
     }
 	
+	private void showDialog() {
+		outside.setVisibility(View.VISIBLE);
+		dialog.setVisibility(View.VISIBLE);
+		menu.setVisibility(View.VISIBLE);
+		retry.setVisibility(View.VISIBLE);
+		next.setVisibility(View.VISIBLE);
+		isScoring = true;
+	}
+
+	private void clearDialog() {
+		outside.setVisibility(View.INVISIBLE);
+		dialog.setVisibility(View.INVISIBLE);
+		menu.setVisibility(View.INVISIBLE);
+		retry.setVisibility(View.INVISIBLE);
+		next.setVisibility(View.INVISIBLE);
+		isScoring = false;
+	}
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -81,7 +119,7 @@ public class GameStage extends Activity  {
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass().getPackage().getName());
 
         // Display an hint to the user about what he should say.
-        //intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Â¶¤f¥O°Õ");
+        //intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Â¶ï¿½fï¿½Oï¿½ï¿½");
         
 
         // Given an hint to the recognizer about what the user is going to say
@@ -110,10 +148,9 @@ public class GameStage extends Activity  {
             		num_correct++;
             }
             accuracy = 100.0*num_correct/question[requestCode-1].length();
-            Toast.makeText(GameStage.this, "§A»¡ªº¬O: " +matches.get(0), Toast.LENGTH_SHORT).show();
-            Toast.makeText(GameStage.this, "¥¿½T²v: "+accuracy+"%", Toast.LENGTH_SHORT).show();
-            
-            
+            Toast.makeText(GameStage.this, "ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½O: " +matches.get(0), Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameStage.this, "ï¿½ï¿½ï¿½Tï¿½v: "+accuracy+"%", Toast.LENGTH_SHORT).show();
+    
             
             if(accuracy >= 90){
             	if(score[requestCode-1] < 3)
@@ -131,12 +168,14 @@ public class GameStage extends Activity  {
             	if(score[requestCode] == -1)
             		score[requestCode]  = 0;
             }  
+            
+            showDialog();
         }
+    	
     	super.onActivityResult(requestCode, resultCode, data);
     }
-	
 
-    private void setListeners() {
+	private void setListeners() {
     	bt_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -202,14 +241,20 @@ public class GameStage extends Activity  {
 			stage[i].setImageResource(imageID);
 			stage[i].setBackgroundColor(Color.TRANSPARENT);
 			
-			
 			resName = "star"+(i+1);
 			resID = getResources().getIdentifier(resName, "id", getPackageName());
 			star[i] = (ImageButton)findViewById(resID);
 			star[i].setImageResource(R.drawable.star0);
 			star[i].setBackgroundColor(Color.TRANSPARENT);
 		}
+		outside = (ImageButton)findViewById(R.id.outside);
+		outside.setBackgroundColor(Color.argb(192, 0, 0, 0));
+		menu = (ImageButton)findViewById(R.id.menu);
+		retry = (ImageButton)findViewById(R.id.retry);
+		next = (ImageButton)findViewById(R.id.next);
+		dialog = (ImageButton)findViewById(R.id.dialog);
 	}
+	
 	@Override
 	protected void onPause(){
 		super.onPause();
@@ -219,5 +264,6 @@ public class GameStage extends Activity  {
 			settings.edit().putInt("score"+i, score[i]).commit();
 		}
 	}
+	
 }
 
