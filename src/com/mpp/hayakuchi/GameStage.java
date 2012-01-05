@@ -22,12 +22,13 @@ public class GameStage extends Activity  {
 	ImageButton star[] = new ImageButton[15];
 	ImageButton outside, menu, retry, next, dialog;
 	boolean isScoring = false;
+	final int questionLength = 15;
 	
 	int score[] = new int[16];
 	int groupID = 1;
-	String question[] = {"�|�Q�|���۷�l", "��ƴ��x���S��", "�s�e���ӱZ�L��", "�|�ҤH�b��", "���ժ���Y�@�K", 
+	String question[] = {"火雞肉飯", "魯肉飯", "�s�e���ӱZ�L��", "�|�ҤH�b��", "���ժ���Y�@�K", 
 			             "��~�U�V", "�x�����", "�[��G��", "�n��i���]", "��u�Q��b", 
-			             "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "�y���ӳ�", "�y�ǵ��U�Ϥ�"};
+			             "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "資訊系", "台大", "政大"};
 	RelativeLayout background;
 	
 	@Override
@@ -52,7 +53,7 @@ public class GameStage extends Activity  {
      
         findViews();
         setListeners();
-        clearDialog();
+        clearScore();
         
         SharedPreferences settings = getSharedPreferences("Preference", 0);
 		score[0] = settings.getInt("score0", 0);
@@ -62,16 +63,33 @@ public class GameStage extends Activity  {
 		
     }
 	
-	private void showDialog() {
+	private void showScore(int index) {
+		final int target = index;
 		outside.setVisibility(View.VISIBLE);
 		dialog.setVisibility(View.VISIBLE);
 		menu.setVisibility(View.VISIBLE);
 		retry.setVisibility(View.VISIBLE);
+		retry.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startVoiceRecognitionActivity(target);
+			}
+		});
 		next.setVisibility(View.VISIBLE);
+		next.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(target != questionLength){
+					startVoiceRecognitionActivity(target+1);
+				}else{
+					clearScore();
+				}
+			}
+		});
 		isScoring = true;
 	}
 
-	private void clearDialog() {
+	private void clearScore() {
 		outside.setVisibility(View.INVISIBLE);
 		dialog.setVisibility(View.INVISIBLE);
 		menu.setVisibility(View.INVISIBLE);
@@ -169,13 +187,36 @@ public class GameStage extends Activity  {
             		score[requestCode]  = 0;
             }  
             
-            showDialog();
+            showScore(requestCode);
         }
     	
     	super.onActivityResult(requestCode, resultCode, data);
     }
+    
+	@Override
+	public void onBackPressed() {
+		if (!isScoring) {
+			super.onBackPressed();
+		} else {
+			clearScore();
+		}
+	}
 
 	private void setListeners() {
+		menu.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				clearScore();
+			}
+		});
+		
+		retry.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
+		
     	bt_back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
