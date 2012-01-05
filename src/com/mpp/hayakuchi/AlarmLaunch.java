@@ -141,6 +141,7 @@ public class AlarmLaunch extends Activity {
 			if (accuracy >= 80) {
 				finish();
 			}else{
+				bt_start.setImageResource(R.drawable.retry_big);
 				mp = MediaPlayer.create(this, R.raw.ring);
 				mp.setVolume((float) (Volumn / 100.0), (float) (Volumn / 100.0));
 				mp.setLooping(true);
