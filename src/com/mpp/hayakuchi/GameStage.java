@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +27,7 @@ public class GameStage extends Activity  {
 	
 	int score[] = new int[16];
 	int groupID = 1;
-	String question[] = {"火雞肉飯", "魯肉飯", "�s�e���ӱZ�L��", "�|�ҤH�b��", "���ժ���Y�@�K", 
+	String question[] = {"火雞肉飯", "魯肉飯", "球傳給萬磁王", "�|�ҤH�b��", "���ժ���Y�@�K", 
 			             "��~�U�V", "�x�����", "�[��G��", "�n��i���]", "��u�Q��b", 
 			             "�|�p����p�Y", "��G����[��G��", "��~�U�V���x�����", "資訊系", "台大", "政大"};
 	RelativeLayout background;
@@ -63,7 +64,7 @@ public class GameStage extends Activity  {
 		
     }
 	
-	private void showScore(int index) {
+	private void showScore(int index, String match, double accuracy) {
 		final int target = index;
 		outside.setVisibility(View.VISIBLE);
 		dialog.setVisibility(View.VISIBLE);
@@ -76,16 +77,27 @@ public class GameStage extends Activity  {
 			}
 		});
 		next.setVisibility(View.VISIBLE);
-		next.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if(target != questionLength){
-					startVoiceRecognitionActivity(target+1);
-				}else{
-					clearScore();
+		if(score[index] >= 0){
+			next.setImageResource(R.drawable.right_arrow);
+			next.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if(target != questionLength){
+						startVoiceRecognitionActivity(target+1);
+					}else{
+						clearScore();
+					}
 				}
-			}
-		});
+			});
+		}else{
+			next.setImageResource(R.drawable.lock);
+			next.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					//do nothing
+				}
+			});
+		}
 		isScoring = true;
 	}
 
@@ -159,40 +171,66 @@ public class GameStage extends Activity  {
     	if (resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            int num_correct = 0;
-            double accuracy;
-            for(int i=0; i<question[requestCode-1].length() && i<matches.get(0).length(); i++){
-            	if(question[requestCode-1].charAt(i) == matches.get(0).charAt(i))
-            		num_correct++;
+            double bestAccuracy = -1.0;
+            String bestMatch = "";
+            
+            for(String match: matches){
+            	double curAccuracy = calAccuracy(question[requestCode-1], match);
+            	if(curAccuracy > bestAccuracy){
+            		bestMatch = match;
+            		bestAccuracy = curAccuracy;
+            	}
             }
-            accuracy = 100.0*num_correct/question[requestCode-1].length();
-            Toast.makeText(GameStage.this, "�A�����O: " +matches.get(0), Toast.LENGTH_SHORT).show();
-            Toast.makeText(GameStage.this, "���T�v: "+accuracy+"%", Toast.LENGTH_SHORT).show();
+            	
+            Toast.makeText(GameStage.this, "你說的是: " +bestMatch, Toast.LENGTH_SHORT).show();
+            Toast.makeText(GameStage.this, "正確率: "+bestAccuracy+"%", Toast.LENGTH_SHORT).show();
     
             
-            if(accuracy >= 90){
+            if(bestAccuracy >= 90){
             	if(score[requestCode-1] < 3)
             		score[requestCode-1]  = 3;
             	if(score[requestCode] == -1)
             		score[requestCode]  = 0;
-            }else if(accuracy >= 70){
+            }else if(bestAccuracy >= 70){
             	if(score[requestCode-1] < 2)
             		score[requestCode-1]  = 2;
             	if(score[requestCode] == -1)
             		score[requestCode]  = 0;
-            }else if(accuracy >= 50){
+            }else if(bestAccuracy >= 50){
             	if(score[requestCode-1] < 1)
             		score[requestCode-1]  = 1;
             	if(score[requestCode] == -1)
             		score[requestCode]  = 0;
             }  
             
-            showScore(requestCode);
+            showScore(requestCode, bestMatch, bestAccuracy);
         }
     	
     	super.onActivityResult(requestCode, resultCode, data);
     }
     
+	private double calAccuracy(String question, String answer) {
+		int aHead = 0;
+		int okCount = 0;
+		
+		for(int i=0; i<question.length(); i++){
+			if(aHead >= answer.length())
+				break;
+			try{
+				int j = aHead;
+				while(answer.charAt(j) != question.charAt(i)){
+					j++;
+				}
+				aHead = j+1;
+				okCount += 1;
+			}catch(StringIndexOutOfBoundsException e){
+				continue;
+			}
+		}
+		
+		return Math.max(0.0, 100.0 * okCount/question.length() - Math.abs(question.length() - answer.length()) * 3.0);
+	}
+
 	@Override
 	public void onBackPressed() {
 		if (!isScoring) {
@@ -225,6 +263,54 @@ public class GameStage extends Activity  {
 		});
 		
     	bt_back.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					bt_back.setAlpha(200);
+					Music.playPress(GameStage.this);
+					break;
+				case MotionEvent.ACTION_UP:
+					bt_back.setAlpha(255);
+					break;
+				}
+				return false;
+			}
+		});
+    	
+    	menu.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					bt_back.setAlpha(200);
+					Music.playPress(GameStage.this);
+					break;
+				case MotionEvent.ACTION_UP:
+					bt_back.setAlpha(255);
+					break;
+				}
+				return false;
+			}
+		});
+    	
+    	retry.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN:
+					bt_back.setAlpha(200);
+					Music.playPress(GameStage.this);
+					break;
+				case MotionEvent.ACTION_UP:
+					bt_back.setAlpha(255);
+					break;
+				}
+				return false;
+			}
+		});
+    	
+    	next.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				switch(event.getAction()){
