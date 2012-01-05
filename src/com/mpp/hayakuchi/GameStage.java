@@ -78,12 +78,16 @@ public class GameStage extends Activity  {
 		
 		if(accuracy >= 90){
 			dialog.setImageResource(R.drawable.dialog_star3);
+			Music.playGood(GameStage.this);
 		}else if(accuracy >= 70){
 			dialog.setImageResource(R.drawable.dialog_star2);
+			Music.playGood(GameStage.this);
 		}else if(accuracy >= 50){
 			dialog.setImageResource(R.drawable.dialog_star1);
+			Music.playGood(GameStage.this);
 		}else {
 			dialog.setImageResource(R.drawable.dialog_star0);
+			Music.playBad(GameStage.this);
 		}
 		
 		retry.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +175,8 @@ public class GameStage extends Activity  {
 	}
     
     private void startVoiceRecognitionActivity(int index) {
+    	Music.lessBGM(GameStage.this);
+    	Music.playQuiz(GameStage.this);
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
         // Specify the calling package to identify your application
@@ -195,7 +201,6 @@ public class GameStage extends Activity  {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	
     	if (resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -210,8 +215,8 @@ public class GameStage extends Activity  {
             	}
             }
             	
-            Toast.makeText(GameStage.this, "你說的是: " +bestMatch, Toast.LENGTH_SHORT).show();
-            Toast.makeText(GameStage.this, "正確率: "+bestAccuracy+"%", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(GameStage.this, "你說的是: " +bestMatch, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(GameStage.this, "正確率: "+bestAccuracy+"%", Toast.LENGTH_SHORT).show();
     
             
             if(bestAccuracy >= 90){
@@ -232,6 +237,7 @@ public class GameStage extends Activity  {
             }  
             
             showScore(requestCode, bestMatch, bestAccuracy);
+            Music.moreBGM(GameStage.this);
         }
     	
     	super.onActivityResult(requestCode, resultCode, data);

@@ -20,7 +20,7 @@ public class MPP_PROJECTActivity extends Activity {
         setContentView(R.layout.title);
         findViews();
         setListeners();
-        
+        Music.playBGM(MPP_PROJECTActivity.this);
         /*
         PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
@@ -65,7 +65,7 @@ public class MPP_PROJECTActivity extends Activity {
     	if (requestCode == VOICE_RECOGNITION_REQUEST_CODE_1 && resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            String q = "�Y���夣�R�����";
+            String q = "�Y���夣�R�����?;
             int num_correct = 0;
             for(int i=0; i<q.length() && i<matches.get(0).length(); i++){
             	if(q.charAt(i) == matches.get(0).charAt(i))
@@ -125,7 +125,6 @@ public class MPP_PROJECTActivity extends Activity {
 		
 	}
 	
-	  //Start Frame Animation動畫
     @Override 
     public void onWindowFocusChanged(boolean hasFocus) { 
     	super.onWindowFocusChanged(hasFocus);
@@ -136,5 +135,12 @@ public class MPP_PROJECTActivity extends Activity {
     	} 
     } 
 	
+
+	@Override
+	public void onBackPressed() {
+		Music.stopBGM(MPP_PROJECTActivity.this);
+		super.onBackPressed();
+	}
+
 	
 }
