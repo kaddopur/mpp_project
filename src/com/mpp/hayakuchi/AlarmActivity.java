@@ -77,14 +77,6 @@ public class AlarmActivity extends Activity {
     	                bundle.putBoolean("day4", Boolean.valueOf((String)map2.get("day4")));
     	                bundle.putBoolean("day5", Boolean.valueOf((String)map2.get("day5")));
     	                bundle.putBoolean("day6", Boolean.valueOf((String)map2.get("day6")));
-//    	                switch(Integer.parseInt((String)map2.get("vibrate"))){
-//    	                case 0:
-//    	                	bundle.putBoolean("vibrate", false);
-//        	            	break;
-//    	                case 1:
-//    	                	bundle.putBoolean("vibrate", true);
-//    	                	break;
-//    	                }
     	                intent.putExtras(bundle);
     	                startActivityForResult(intent, arg2);
     			
@@ -103,19 +95,6 @@ public class AlarmActivity extends Activity {
 		map3.put("clockTimeHour", Integer.toString(bundle.getInt("clockTimeHour")));
 		map3.put("clockTimeMinute",Integer.toString(bundle.getInt("clockTimeMinute")));
 		map3.put("level", Integer.toString(bundle.getInt("level")));
-//		switch(bundle.getInt("level"))
-//		{
-//		case 0:
-//			map3.put("levelImg", R.drawable.tag_1);
-//			break;
-//		case 1:
-//			map3.put("levelImg", R.drawable.tag_2);
-//			break;
-//		case 2:
-//			map3.put("levelImg", R.drawable.tag_3);
-//			break;
-//		}
-//		
 		map3.put("volumn", Integer.toString(bundle.getInt("volumn")));
 		map3.put("vibrate", Boolean.toString(bundle.getBoolean("vibrate")));
 		map3.put("day0", Boolean.toString(bundle.getBoolean("day0")));
@@ -167,18 +146,22 @@ public class AlarmActivity extends Activity {
     	//将�??�毫秒设置为0  
         calendar.set(Calendar.SECOND, 0);  
         calendar.set(Calendar.MILLISECOND, 0); 
-    	Intent intent = new Intent(AlarmActivity.this,AlarmReceiver.class);  
-    	Bundle bundle=new Bundle();
-        bundle.putInt("level", Integer.parseInt((String)map4.get("level")));
-        bundle.putInt("volumn", Integer.parseInt((String)map4.get("volumn")));
-        bundle.putBoolean("vibrate", Boolean.valueOf((String)map4.get("vibrate")));
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, position, intent, 0);  
+    	Intent alIntent = new Intent(AlarmActivity.this,AlarmReceiver.class);  
+    	Bundle alBundle=new Bundle();
+    	alBundle.putInt("level", Integer.parseInt((String)map4.get("level")));
+    	alBundle.putInt("volumn", Integer.parseInt((String)map4.get("volumn")));
+    	alBundle.putBoolean("vibrate", Boolean.valueOf((String)map4.get("vibrate")));
+    	alIntent.putExtras(alBundle);
+    	PendingIntent pendingIntent2 = PendingIntent.getBroadcast(AlarmActivity.this, position, alIntent, 0);  
+        
         //?��??��?管�??? 
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);  
         //设置?��?  
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);  
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent2);  
 //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10*1000, pendingIntent);  
-        Toast.makeText(AlarmActivity.this, "鬧鐘時間為："+ (String)map4.get("clockTime"), Toast.LENGTH_SHORT).show();  
+       Toast.makeText(AlarmActivity.this, "設定鬧鐘時間為："+ (String)map4.get("clockTime"), Toast.LENGTH_SHORT).show();  
+//       Toast.makeText(AlarmActivity.this, ":"+Integer.parseInt((String)map4.get("level"))+":"+Integer.parseInt((String)map4.get("volumn"))+":"+Boolean.valueOf((String)map4.get("vibrate")), Toast.LENGTH_LONG).show();
+		
     	}
     	}
 	
@@ -284,7 +267,6 @@ public class AlarmActivity extends Activity {
 		settings.edit().putString("day4",(String)map5.get("day4") ).commit();
 		settings.edit().putString("day5", (String)map5.get("day5")).commit();
 		settings.edit().putString("day6", (String)map5.get("day6")).commit();
-//		settings.edit().putInt("levelImg",Integer.parseInt((String)map5.get("levelImg"))).commit();
 //		
 		settings = getSharedPreferences("Preference3", 0);
 		map5 = (HashMap<String, Object>) list.getItemAtPosition(2);
@@ -301,7 +283,6 @@ public class AlarmActivity extends Activity {
 		settings.edit().putString("day4",(String)map5.get("day4") ).commit();
 		settings.edit().putString("day5", (String)map5.get("day5")).commit();
 		settings.edit().putString("day6", (String)map5.get("day6")).commit();
-//		settings.edit().putInt("levelImg",Integer.parseInt((String)map5.get("levelImg"))).commit();
 		settings.edit().putBoolean("launch1", launch[0]).commit();
 		settings.edit().putBoolean("launch2", launch[1]).commit();
 		settings.edit().putBoolean("launch3", launch[2]).commit();

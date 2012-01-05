@@ -188,7 +188,7 @@ import android.widget.Toast;
 				        //设置?��?  
 				        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);  
 //				        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10*1000, pendingIntent);  
-				        Toast.makeText(context, "鬧鐘時間為："+ (String)AlarmActivity.listItem.get(position).get("clockTime"), Toast.LENGTH_SHORT).show(); 
+				        Toast.makeText(context, "設定鬧鐘時間為："+ (String)AlarmActivity.listItem.get(position).get("clockTime"), Toast.LENGTH_SHORT).show(); 
 				    }
 				    else if(isChecked==false)
 				        {

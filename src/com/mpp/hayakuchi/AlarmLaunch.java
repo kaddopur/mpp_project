@@ -82,21 +82,21 @@ public class AlarmLaunch extends Activity {
 		}
 	}
 
-	// @Override
-	// public void onBackPressed() {
-	// // 这�?处�??��?�??，大家注?��?该方法�??�用�?.0?�更?��??�sdk
-	// return;
-	// }
-	@Override
-	public void onAttachedToWindow()
-
-	{ // TODO Auto-generated method stub
-
-		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
-
-		super.onAttachedToWindow();
-
-	}
+	 @Override
+	 public void onBackPressed() {
+	 // 这�?处�??��?�??，大家注?��?该方法�??�用�?.0?�更?��??�sdk
+	 return;
+	 }
+//	@Override
+//	public void onAttachedToWindow()
+//
+//	{ // TODO Auto-generated method stub
+//
+//		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+//
+//		super.onAttachedToWindow();
+//
+//	}
 
 	private void startVoiceRecognitionActivity(int index) {
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);

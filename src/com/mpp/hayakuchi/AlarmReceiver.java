@@ -11,22 +11,21 @@ public class AlarmReceiver extends BroadcastReceiver {
 	boolean Vibrate;
 	@Override
 	public void onReceive(Context arg0, Intent data) {
-        Bundle bundle = data.getExtras();  
-        Level=bundle.getInt("level");
-        Volumn=bundle.getInt("volumn");
-        Vibrate=bundle.getBoolean("vibrate");
-//		Toast.makeText(arg0, "é¬§é??‚é??°ä?ï¼Œé??¡ç?ç´šï?"+Level+" é¬§éˆ´?³é?ï¼?+Volumn+" ?‡å?ï¼?+Vibrate, Toast.LENGTH_LONG).show();
+        Bundle bundle3 = new Bundle();
+        bundle3 = data.getExtras();  
+        Level=bundle3.getInt("level");
+        Volumn=bundle3.getInt("volumn");
+        Vibrate=bundle3.getBoolean("vibrate");
+//		Toast.makeText(arg0, "ç­‰ç´šï¼š"+Level+"éŸ³é‡:"+Volumn+"éœ‡å‹•:"+Vibrate, Toast.LENGTH_LONG).show();
 		Intent alaramIntent = new Intent(arg0, AlarmLaunch.class); 
         Bundle bundleRet = new Bundle(); 
         bundleRet.putInt("level", Level);
         bundleRet.putInt("volumn", Volumn);
         bundleRet.putBoolean("vibrate", Vibrate);
-        alaramIntent.putExtras(bundleRet);
-         
         alaramIntent.putExtras(bundleRet); 
         alaramIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
         arg0.startActivity(alaramIntent); 
-	
+        
 	}
 
 
