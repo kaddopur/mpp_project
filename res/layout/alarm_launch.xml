@@ -2,35 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_x="0dp"
-        android:layout_y="0dp"
-        android:src="@drawable/back_2" />
-
-    <DigitalClock
-        android:id="@+id/digitalClock1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:text="DigitalClock"
-        android:textSize="30dp" />
+    android:layout_height="match_parent" android:background="@drawable/back_4_2">
 
     <ImageButton
         android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/digitalClock1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:src="@drawable/button_1" android:background="@null"></ImageButton>
+        android:layout_marginBottom="35dp"
+        android:background="@null"
+        android:src="@drawable/button_1" />
+
+    <DigitalClock
+        android:id="@+id/digitalClock1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:text="DigitalClock"
+        android:textColor="#000000"
+        android:textSize="28dp" />
 
 </RelativeLayout>
