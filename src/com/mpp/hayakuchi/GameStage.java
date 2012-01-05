@@ -175,6 +175,7 @@ public class GameStage extends Activity  {
 	}
     
     private void startVoiceRecognitionActivity(int index) {
+    	Music.lessBGM(GameStage.this);
     	Music.playQuiz(GameStage.this);
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
@@ -200,7 +201,6 @@ public class GameStage extends Activity  {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	
     	if (resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -237,6 +237,7 @@ public class GameStage extends Activity  {
             }  
             
             showScore(requestCode, bestMatch, bestAccuracy);
+            Music.moreBGM(GameStage.this);
         }
     	
     	super.onActivityResult(requestCode, resultCode, data);
