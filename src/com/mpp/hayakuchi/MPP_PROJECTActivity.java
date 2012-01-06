@@ -9,10 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 public class MPP_PROJECTActivity extends Activity {
     private ImageButton bt_start;
-    private ImageView titleImage;
+    private RelativeLayout titleImage;
     AnimationDrawable fireAnimation;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class MPP_PROJECTActivity extends Activity {
     	if (requestCode == VOICE_RECOGNITION_REQUEST_CODE_1 && resultCode == RESULT_OK) {
             // Fill the list view with the strings the recognizer thought it could have heard
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            String q = "�Y���夣�R�����?;
+            String q = "�Y���夣�R�����?;
             int num_correct = 0;
             for(int i=0; i<q.length() && i<matches.get(0).length(); i++){
             	if(q.charAt(i) == matches.get(0).charAt(i))
@@ -119,7 +120,7 @@ public class MPP_PROJECTActivity extends Activity {
 	
 	private void findViews() {
 		bt_start = (ImageButton)findViewById(R.id.bt_start);
-		titleImage =(ImageView)findViewById(R.id.imageView1);
+		titleImage =(RelativeLayout)findViewById(R.id.RelativeLayout1);
 		titleImage.setBackgroundResource(R.anim.fireanim);
 		fireAnimation =(AnimationDrawable)titleImage.getBackground(); 
 		
