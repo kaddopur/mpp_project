@@ -65,6 +65,7 @@ public class AlarmLaunch extends Activity {
 		bt_start.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Music.playPress(AlarmLaunch.this);
 				startVoiceRecognitionActivity(Math.abs(r.nextInt())%15+1);
 			}
 		});
@@ -100,6 +101,7 @@ public class AlarmLaunch extends Activity {
 //	}
 
 	private void startVoiceRecognitionActivity(int index) {
+		Music.playQuiz(AlarmLaunch.this);
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
 		// Specify the calling package to identify your application
