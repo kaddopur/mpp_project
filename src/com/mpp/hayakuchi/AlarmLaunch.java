@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class AlarmLaunch extends Activity {
@@ -25,6 +27,8 @@ public class AlarmLaunch extends Activity {
 	MediaPlayer mp;
 	Vibrator myVibrator;
 	ImageButton bt_start;
+	AnimationDrawable birdAnimation;
+	ImageView titleImage;
 	Random r = new java.util.Random();
 
 	String[][] question = { { "魯肉飯", "漢堡吃到飽", "中永和萬磁王", "寶傑我跟你說", "語音辨識帥到掉渣", "球給志傑", "潮到出水", "在釣竿港釣魚", "薛丁格的哆啦a夢", "李組長眉頭一皺發現案情並不單純", "魯夫人好嗎", "史詩大師", "時事雜誌", "四十四隻石獅子", "和尚端湯上塔", "" },
@@ -73,6 +77,9 @@ public class AlarmLaunch extends Activity {
 
 	private void findViews() {
 		bt_start = (ImageButton) findViewById(R.id.imageButton1);
+		titleImage = (ImageView)findViewById(R.id.imageView1);
+		titleImage.setBackgroundResource(R.anim.birdanim);
+		birdAnimation =(AnimationDrawable)titleImage.getBackground(); 
 	}
 
 	@Override
@@ -186,4 +193,14 @@ public class AlarmLaunch extends Activity {
 		double result = Math.max(0.0, 100.0 * okCount/question.length() - Math.abs(question.length() - answer.length()) * 3.0);
 		return Math.round(result*10)/10;
 	}
+	
+	@Override 
+    public void onWindowFocusChanged(boolean hasFocus) { 
+    	super.onWindowFocusChanged(hasFocus);
+    	if (hasFocus) { 
+    		birdAnimation.start();
+    	} else { 
+    		birdAnimation.stop();
+    	} 
+    } 
 }
